@@ -1,1 +1,142 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>البحث عن الحضور</title>
 
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f2f4f8;
+      color: #222;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 60px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #1f6feb;
+    }
+
+    .search-box {
+      display: flex;
+      gap: 10px;
+      margin: 30px 0;
+    }
+
+    input {
+      flex: 1;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 15px 30px;
+      border: none;
+      border-radius: 8px;
+      background: #1f6feb;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1558b0;
+    }
+
+    .result {
+      display: none;
+      margin-top: 20px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      border-right: 5px solid #1f6feb;
+    }
+
+    .not-found {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>نظام البحث عن الحضور</h1>
+
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="اكتب الاسم أو التسلسل">
+      <button onclick="searchStudent()">بحث</button>
+    </div>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    const students = [
+      {
+        id: "1",
+        name: "طالب تجريبي",
+        department: "علوم الحاسوب",
+        year: "2024",
+        attendance: "20"
+      },
+      {
+        id: "2",
+        name: "أحمد محمد علي",
+        department: "تقنيات المعلومات",
+        year: "2023",
+        attendance: "15"
+      }
+    ];
+
+    function searchStudent() {
+      const search = document
+        .getElementById("searchInput")
+        .value
+        .trim();
+
+      const result = document.getElementById("result");
+
+      const student = students.find(
+        s =>
+          s.id === search ||
+          s.name.includes(search)
+      );
+
+      result.style.display = "block";
+
+      if (student) {
+        result.innerHTML = `
+          <h2>نتيجة البحث</h2>
+          <p><strong>التسلسل:</strong> ${student.id}</p>
+          <p><strong>الاسم:</strong> ${student.name}</p>
+          <p><strong>القسم:</strong> ${student.department}</p>
+          <p><strong>سنة التخرج:</strong> ${student.year}</p>
+          <p><strong>عدد الحضور:</strong> ${student.attendance}</p>
+        `;
+      } else {
+        result.innerHTML =
+          '<p class="not-found">لم يتم العثور على الطالب</p>';
+      }
+    }
+  </script>
+
+</body>
+</html>
