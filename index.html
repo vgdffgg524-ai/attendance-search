@@ -3,10 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>بيسي بغداد - نظام معلومات العملاء</title>
-
-<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<title>بيسي يگدار - نظام معلومات العملاء</title>
 
 <style>
 *{
@@ -17,618 +14,236 @@
 
 body{
     font-family:Tahoma,Arial,sans-serif;
-    background:#f4f7fb;
-    color:#1d2733;
-    min-height:100vh;
-}
-
-button,input,select{
-    font-family:inherit;
+    background:#f5f8fc;
+    color:#172b4d;
 }
 
 .header{
-    background:linear-gradient(135deg,#0055a5,#0072bc);
+    background:#0757a8;
     color:white;
-    text-align:center;
-    padding:30px 20px 40px;
-    box-shadow:0 4px 15px rgba(0,0,0,.12);
+    padding:18px 6%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
 .logo{
-    width:72px;
-    height:72px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo-circle{
+    width:42px;
+    height:42px;
     border-radius:50%;
     background:white;
-    margin:0 auto 12px;
     display:flex;
     align-items:center;
     justify-content:center;
-    color:#0055a5;
-    font-size:16px;
+    color:#0757a8;
+    font-size:22px;
     font-weight:bold;
-    border:4px solid rgba(255,255,255,.8);
 }
 
-.header h1{
-    font-size:27px;
-    margin-bottom:7px;
+.title{
+    font-size:22px;
+    font-weight:bold;
 }
 
-.header p{
-    font-size:15px;
-    opacity:.9;
+.subtitle{
+    font-size:12px;
+    opacity:.85;
+    margin-top:4px;
 }
 
 .container{
-    width:94%;
     max-width:1100px;
-    margin:-25px auto 40px;
+    margin:28px auto;
+    padding:0 18px;
 }
 
 .card{
     background:white;
-    border-radius:20px;
-    padding:25px;
-    box-shadow:0 5px 22px rgba(0,0,0,.08);
-    margin-bottom:20px;
+    border:1px solid #e3eaf2;
+    border-radius:16px;
+    padding:24px;
+    box-shadow:0 6px 25px rgba(20,50,90,.07);
 }
-
-/* الرئيسية */
-
-.page{
-    display:none;
-}
-
-.page.show{
-    display:block;
-}
-
-.home-title{
-    text-align:center;
-    color:#0055a5;
-    font-size:24px;
-    font-weight:bold;
-    margin-bottom:25px;
-}
-
-.login-options{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:18px;
-}
-
-.login-option{
-    border:none;
-    border-radius:17px;
-    padding:30px 15px;
-    cursor:pointer;
-    color:white;
-    transition:.2s;
-}
-
-.login-option:hover{
-    transform:translateY(-3px);
-}
-
-.admin-option{
-    background:linear-gradient(135deg,#0055a5,#0072bc);
-}
-
-.public-option{
-    background:linear-gradient(135deg,#168b5a,#20a66d);
-}
-
-.option-icon{
-    font-size:42px;
-    margin-bottom:10px;
-}
-
-.login-option h2{
-    font-size:21px;
-    margin-bottom:7px;
-}
-
-.login-option p{
-    font-size:13px;
-    opacity:.9;
-}
-
-/* الرمز */
-
-.password-box{
-    display:none;
-    margin-top:22px;
-    text-align:center;
-}
-
-.password-box.show{
-    display:block;
-}
-
-.password-title{
-    color:#0055a5;
-    font-weight:bold;
-    font-size:18px;
-    margin-bottom:13px;
-}
-
-.password-input{
-    width:100%;
-    height:52px;
-    border:1px solid #d6dee7;
-    border-radius:12px;
-    padding:0 17px;
-    font-size:16px;
-    outline:none;
-    text-align:center;
-}
-
-.login-button{
-    width:100%;
-    height:52px;
-    margin-top:12px;
-    border:none;
-    border-radius:12px;
-    background:#0055a5;
-    color:white;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.secondary-button{
-    width:100%;
-    height:45px;
-    margin-top:10px;
-    border:none;
-    border-radius:11px;
-    background:#eef2f5;
-    color:#46515b;
-    cursor:pointer;
-}
-
-/* عنوان الصفحات */
-
-.page-heading{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
-    margin-bottom:20px;
-}
-
-.page-heading h2{
-    color:#0055a5;
-    font-size:23px;
-}
-
-.home-button{
-    border:none;
-    background:#eef2f5;
-    color:#40505d;
-    padding:11px 16px;
-    border-radius:11px;
-    cursor:pointer;
-    white-space:nowrap;
-}
-
-.home-button:hover{
-    background:#e1e7ec;
-}
-
-/* لوحة الإدارة */
-
-.upload-box{
-    border:2px dashed #c8dbe9;
-    background:#f8fbfd;
-    border-radius:15px;
-    padding:28px;
-    text-align:center;
-    margin-bottom:20px;
-}
-
-.upload-icon{
-    font-size:45px;
-    margin-bottom:10px;
-}
-
-.upload-box h3{
-    margin-bottom:7px;
-}
-
-.upload-box p{
-    color:#78838e;
-    font-size:13px;
-    margin-bottom:17px;
-}
-
-.file-button{
-    display:inline-block;
-    background:#0055a5;
-    color:white;
-    padding:13px 22px;
-    border-radius:11px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-#excelFile{
-    display:none;
-}
-
-.status{
-    margin-top:15px;
-    padding:12px;
-    border-radius:10px;
-    background:#f1f5f8;
-    color:#5e6974;
-    font-size:13px;
-}
-
-.stats{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
-    margin-bottom:25px;
-}
-
-.stat{
-    background:#f7f9fb;
-    border-radius:13px;
-    padding:18px;
-    text-align:center;
-}
-
-.stat-number{
-    color:#0055a5;
-    font-size:27px;
-    font-weight:bold;
-    margin-bottom:5px;
-}
-
-.stat-label{
-    color:#7d8791;
-    font-size:12px;
-}
-
-/* البحث */
 
 .search-title{
     text-align:center;
-    color:#0055a5;
-    font-size:23px;
-    font-weight:bold;
-    margin-bottom:20px;
+    font-size:22px;
+    margin-bottom:8px;
 }
 
-.search-grid{
-    display:grid;
-    grid-template-columns:1fr 260px;
-    gap:12px;
+.search-hint{
+    text-align:center;
+    color:#7b8794;
+    font-size:13px;
+    margin-bottom:22px;
 }
 
-.search-input,
-.rep-select{
-    width:100%;
-    height:54px;
-    border:1px solid #d6dee7;
-    border-radius:12px;
+.search-box{
+    display:flex;
+    gap:10px;
+}
+
+.search-box input{
+    flex:1;
+    height:52px;
+    border:1px solid #ccd8e5;
+    border-radius:10px;
     padding:0 18px;
     font-size:16px;
     outline:none;
-    background:#fafbfd;
 }
 
-.search-input:focus,
-.rep-select:focus{
-    border-color:#0072bc;
-    background:white;
+.search-box input:focus{
+    border-color:#0875d1;
 }
 
-.search-button{
-    width:100%;
-    height:53px;
-    margin-top:13px;
+.search-btn{
+    width:120px;
     border:none;
-    border-radius:12px;
-    background:#0055a5;
+    border-radius:10px;
+    background:#0875d1;
     color:white;
-    font-size:17px;
+    font-size:16px;
     font-weight:bold;
     cursor:pointer;
 }
 
-.search-info{
-    text-align:center;
-    margin-top:12px;
-    color:#78838e;
-    font-size:13px;
+.search-btn:hover{
+    background:#075da8;
 }
 
-.results-header{
+.section{
+    margin-top:28px;
+}
+
+.section-title{
+    font-size:18px;
+    margin-bottom:14px;
+}
+
+.results{
     display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:15px;
+    flex-direction:column;
+    gap:10px;
 }
 
-.results-header h2{
-    font-size:20px;
-}
-
-.results-count{
-    background:#e8f3fc;
-    color:#0055a5;
-    padding:7px 13px;
-    border-radius:20px;
-    font-size:13px;
-    font-weight:bold;
-}
-
-.rep-section{
-    margin-bottom:25px;
-}
-
-.rep-title{
-    display:flex;
-    align-items:center;
-    gap:9px;
-    background:#eaf4fc;
-    color:#0055a5;
+.result{
+    border:1px solid #e1e8f0;
     border-radius:12px;
-    padding:12px 15px;
-    margin-bottom:11px;
-    font-weight:bold;
-}
-
-.rep-icon{
-    width:32px;
-    height:32px;
-    border-radius:50%;
-    background:#0055a5;
-    color:white;
-    display:flex;
+    padding:16px;
+    display:grid;
+    grid-template-columns:1.5fr 1fr 1fr 35px;
     align-items:center;
-    justify-content:center;
-}
-
-.customer-card{
-    background:white;
-    border-radius:16px;
-    padding:19px;
-    margin-bottom:11px;
-    border:1px solid #e8edf2;
-    box-shadow:0 3px 14px rgba(0,0,0,.06);
+    gap:15px;
     cursor:pointer;
     transition:.2s;
 }
 
-.customer-card:hover{
-    transform:translateY(-2px);
+.result:hover{
+    box-shadow:0 5px 18px rgba(20,70,120,.10);
+    border-color:#b9d5ef;
 }
 
-.customer-name{
-    font-size:20px;
+.value{
     font-weight:bold;
-    margin-bottom:5px;
 }
 
-.customer-fullname{
-    color:#68737f;
-    margin-bottom:15px;
-    font-size:15px;
-}
-
-.customer-details{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:9px;
-}
-
-.detail-box{
-    background:#f7f9fb;
-    border-radius:10px;
-    padding:10px;
-}
-
-.detail-label{
-    color:#8a949f;
+.label{
+    color:#7b8794;
     font-size:11px;
-    margin-bottom:5px;
+    margin-top:5px;
 }
 
-.detail-value{
-    font-size:13px;
-    font-weight:bold;
-    word-break:break-word;
+.arrow{
+    color:#0875d1;
+    font-size:25px;
 }
 
 .empty{
-    background:white;
-    border-radius:16px;
-    padding:45px 20px;
     text-align:center;
-    color:#7c8792;
-    box-shadow:0 3px 15px rgba(0,0,0,.05);
+    padding:30px;
+    color:#7b8794;
+    border:1px dashed #ccd8e5;
+    border-radius:12px;
 }
 
-.empty-icon{
-    font-size:45px;
-    margin-bottom:10px;
-}
-
-.empty h3{
-    color:#394450;
-    margin-bottom:7px;
-}
-
-/* نافذة التفاصيل */
-
-.modal{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.55);
+.details{
     display:none;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-    z-index:1000;
 }
 
-.modal.show{
+.detail-header{
     display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
 }
 
-.modal-content{
-    width:100%;
-    max-width:750px;
-    max-height:90vh;
-    overflow-y:auto;
-    background:white;
-    border-radius:20px;
-}
-
-.modal-header{
-    position:relative;
-    background:linear-gradient(135deg,#0055a5,#0072bc);
-    color:white;
-    padding:22px;
-}
-
-.modal-header h2{
-    font-size:23px;
-    margin-bottom:6px;
-}
-
-.close-button{
-    position:absolute;
-    left:18px;
-    top:17px;
-    width:36px;
-    height:36px;
+.back-btn{
     border:none;
-    border-radius:50%;
-    background:rgba(255,255,255,.2);
-    color:white;
-    font-size:22px;
+    background:#eaf3fc;
+    color:#0757a8;
+    padding:10px 16px;
+    border-radius:9px;
     cursor:pointer;
 }
 
-.modal-body{
-    padding:22px;
-}
-
-.section-title{
-    color:#0055a5;
-    font-size:18px;
-    font-weight:bold;
-    margin-bottom:14px;
-}
-
-.info-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-    margin-bottom:25px;
-}
-
-.info-item{
-    background:#f7f9fb;
-    padding:13px;
-    border-radius:10px;
-}
-
-.info-item span{
-    display:block;
-    color:#8a949f;
-    font-size:11px;
-    margin-bottom:5px;
-}
-
-.info-item strong{
-    font-size:14px;
-}
-
-.fridge-card{
-    border:1px solid #e2e8ee;
-    border-radius:12px;
-    padding:15px;
-    margin-bottom:10px;
-    background:#fbfcfd;
-}
-
-.fridge-row{
+.detail-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:12px;
 }
 
-.fridge-item span{
-    display:block;
-    color:#8a949f;
-    font-size:11px;
-    margin-bottom:4px;
+.detail-item{
+    background:#f7f9fc;
+    border-radius:11px;
+    padding:15px;
 }
 
-.fridge-item strong{
-    font-size:14px;
+.detail-label{
+    color:#7b8794;
+    font-size:12px;
+    margin-bottom:7px;
+}
+
+.detail-value{
+    font-weight:bold;
+    font-size:15px;
 }
 
 .footer{
     text-align:center;
-    color:#8a949f;
+    color:#8a96a3;
     font-size:12px;
-    padding:20px;
+    padding:25px;
 }
 
-@media(max-width:750px){
+@media(max-width:700px){
 
-    .login-options{
-        grid-template-columns:1fr;
+    .header{
+        padding:15px;
     }
 
-    .search-grid{
-        grid-template-columns:1fr;
-    }
-
-    .customer-details{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .stats{
-        grid-template-columns:1fr;
-    }
-
-    .info-grid{
-        grid-template-columns:1fr;
-    }
-
-    .fridge-row{
-        grid-template-columns:1fr;
-    }
-
-    .page-heading{
-        align-items:stretch;
+    .search-box{
         flex-direction:column;
     }
 
-    .home-button{
+    .search-btn{
         width:100%;
+        height:50px;
     }
-}
 
-@media(max-width:430px){
+    .result{
+        grid-template-columns:1fr 1fr;
+    }
 
-    .customer-details{
+    .detail-grid{
         grid-template-columns:1fr;
-    }
-
-    .card{
-        padding:18px;
-    }
-
-    .customer-card{
-        padding:16px;
     }
 }
 </style>
@@ -639,1889 +254,362 @@ button,input,select{
 <header class="header">
 
     <div class="logo">
-        PEPSI
+
+        <div class="logo-circle">P</div>
+
+        <div>
+            <div class="title">بيسي يگدار</div>
+            <div class="subtitle">نظام معلومات العملاء</div>
+        </div>
+
     </div>
 
-    <h1>بيسي بغداد</h1>
-
-    <p>نظام معلومات العملاء</p>
+    <div>👤</div>
 
 </header>
 
-<main class="container">
 
-<!-- =========================
-     الرئيسية
-========================= -->
+<div class="container">
 
-<section id="homePage" class="card page show">
+<div class="card">
 
-    <div class="home-title">
-        🔐 نظام معلومات العملاء
+    <h1 class="search-title">🔎 البحث عن العميل</h1>
+
+    <div class="search-hint">
+        يمكنك البحث بالاسم التجاري أو الاسم الثلاثي أو جزء من الاسم
     </div>
 
-    <div class="login-options">
 
-        <button
-            class="login-option admin-option"
-            onclick="chooseLogin('admin')"
-        >
-
-            <div class="option-icon">⚙️</div>
-
-            <h2>الإدارة</h2>
-
-            <p>
-                البحث الكامل وتحديث قاعدة البيانات
-            </p>
-
-        </button>
-
-        <button
-            class="login-option public-option"
-            onclick="chooseLogin('public')"
-        >
-
-            <div class="option-icon">🔎</div>
-
-            <h2>البحث العام</h2>
-
-            <p>
-                البحث عن العملاء والتفاصيل
-            </p>
-
-        </button>
-
-    </div>
-
-    <div
-        id="passwordBox"
-        class="password-box"
-    >
-
-        <div
-            id="passwordTitle"
-            class="password-title"
-        >
-            أدخل رمز الدخول
-        </div>
+    <div class="search-box">
 
         <input
-            id="passwordInput"
-            class="password-input"
-            type="password"
-            placeholder="اكتب رمز الدخول"
-            onkeydown="passwordEnter(event)"
+            id="searchInput"
+            type="text"
+            placeholder="اكتب الاسم التجاري أو الاسم الثلاثي ..."
         >
 
-        <button
-            class="login-button"
-            onclick="login()"
-        >
-            دخول
-        </button>
-
-        <button
-            class="secondary-button"
-            onclick="cancelLogin()"
-        >
-            رجوع
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     الإدارة
-========================= -->
-
-<section
-    id="adminPage"
-    class="page"
->
-
-    <div class="card">
-
-        <div class="page-heading">
-
-            <h2>
-                ⚙️ لوحة الإدارة
-            </h2>
-
-            <button
-                class="home-button"
-                onclick="goHome()"
-            >
-                🏠 الرئيسية
-            </button>
-
-        </div>
-
-
-        <div class="upload-box">
-
-            <div class="upload-icon">
-                📊
-            </div>
-
-            <h3>
-                تحديث قاعدة بيانات العملاء
-            </h3>
-
-            <p>
-                ارفعي ملف Excel الجديد حتى يتم تحديث البيانات.
-            </p>
-
-            <label class="file-button">
-
-                📁 اختيار ملف Excel
-
-                <input
-                    type="file"
-                    id="excelFile"
-                    accept=".xlsx,.xls"
-                >
-
-            </label>
-
-            <div
-                id="excelStatus"
-                class="status"
-            >
-                لم يتم تحميل ملف Excel بعد.
-            </div>
-
-        </div>
-
-
-        <div class="stats">
-
-            <div class="stat">
-
-                <div
-                    id="customerCount"
-                    class="stat-number"
-                >
-                    0
-                </div>
-
-                <div class="stat-label">
-                    عدد العملاء
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div
-                    id="repCount"
-                    class="stat-number"
-                >
-                    0
-                </div>
-
-                <div class="stat-label">
-                    عدد المندوبين
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div
-                    id="fridgeCount"
-                    class="stat-number"
-                >
-                    0
-                </div>
-
-                <div class="stat-label">
-                    عدد البرادات
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- بحث الإدارة -->
-
-    <div class="card">
-
-        <div class="search-title">
-            🔎 البحث الكامل
-        </div>
-
-        <div class="search-grid">
-
-            <input
-                id="adminSearchInput"
-                class="search-input"
-                type="text"
-                placeholder="الاسم التجاري أو الاسم الثلاثي أو رقم البراد..."
-            >
-
-            <select
-                id="adminRepSelect"
-                class="rep-select"
-            >
-
-                <option value="">
-                    كل المندوبين
-                </option>
-
-            </select>
-
-        </div>
-
-        <button
-            class="search-button"
-            onclick="search('admin')"
-        >
+        <button class="search-btn" onclick="searchCustomer()">
             🔍 بحث
         </button>
 
-        <div class="search-info">
-            الإدارة تستطيع البحث في جميع البيانات.
-        </div>
-
     </div>
 
 
-    <div class="results-header">
+    <div class="section">
 
-        <h2>
-            نتائج البحث
+        <h2 class="section-title">
+            👥 نتائج البحث
+            <span id="resultCount"></span>
         </h2>
 
-        <div
-            id="adminResultsCount"
-            class="results-count"
-        >
-            0 نتيجة
-        </div>
+        <div id="results" class="results">
 
-    </div>
-
-
-    <div id="adminResults">
-
-        <div class="empty">
-
-            <div class="empty-icon">
-                🔎
+            <div class="empty">
+                اكتب اسم العميل ثم اضغط بحث.
             </div>
 
-            <h3>
-                اكتب شيئاً للبحث
-            </h3>
-
-            <p>
-                ابحث بالاسم التجاري أو الاسم الثلاثي أو رقم البراد.
-            </p>
-
         </div>
 
     </div>
 
-</section>
 
+    <div id="details" class="section details">
 
-<!-- =========================
-     البحث العام
-========================= -->
+        <div class="detail-header">
 
-<section
-    id="publicPage"
-    class="page"
->
-
-    <div class="card">
-
-        <div class="page-heading">
-
-            <h2>
-                🔎 البحث العام
+            <h2 class="section-title">
+                بيانات العميل
             </h2>
 
-            <button
-                class="home-button"
-                onclick="goHome()"
-            >
-                🏠 الرئيسية
+            <button class="back-btn" onclick="closeDetails()">
+                ← رجوع
             </button>
 
         </div>
 
-
-        <div class="search-grid">
-
-            <input
-                id="publicSearchInput"
-                class="search-input"
-                type="text"
-                placeholder="الاسم التجاري أو الاسم الثلاثي أو رقم البراد..."
-            >
-
-            <select
-                id="publicRepSelect"
-                class="rep-select"
-            >
-
-                <option value="">
-                    كل المندوبين
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <button
-            class="search-button"
-            onclick="search('public')"
-        >
-            🔍 بحث
-        </button>
-
-
-        <div class="search-info">
-            يمكنك تحديد اسم المندوب لتضييق نتائج البحث.
-        </div>
-
-    </div>
-
-
-    <div class="results-header">
-
-        <h2>
-            نتائج البحث
-        </h2>
-
-        <div
-            id="publicResultsCount"
-            class="results-count"
-        >
-            0 نتيجة
-        </div>
-
-    </div>
-
-
-    <div id="publicResults">
-
-        <div class="empty">
-
-            <div class="empty-icon">
-                🔎
-            </div>
-
-            <h3>
-                اكتب شيئاً للبحث
-            </h3>
-
-            <p>
-                ابحث بالاسم التجاري أو الاسم الثلاثي أو رقم البراد.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-</main>
-
-
-<footer class="footer">
-    نظام معلومات العملاء - بيسي بغداد
-</footer>
-
-
-<!-- =========================
-     نافذة التفاصيل
-========================= -->
-
-<div
-    id="customerModal"
-    class="modal"
->
-
-    <div class="modal-content">
-
-        <div class="modal-header">
-
-            <button
-                class="close-button"
-                onclick="closeModal()"
-            >
-                ×
-            </button>
-
-            <h2 id="modalCustomerName"></h2>
-
-            <p id="modalCustomerFullName"></p>
-
-        </div>
-
-
-        <div class="modal-body">
-
-            <div class="section-title">
-                👤 معلومات العميل
-            </div>
-
-
-            <div class="info-grid">
-
-                <div class="info-item">
-                    <span>المندوب</span>
-                    <strong id="modalRep">-</strong>
-                </div>
-
-                <div class="info-item">
-                    <span>رقم الهاتف</span>
-                    <strong id="modalPhone">-</strong>
-                </div>
-
-                <div class="info-item">
-                    <span>العنوان</span>
-                    <strong id="modalAddress">-</strong>
-                </div>
-
-                <div class="info-item">
-                    <span>المسار</span>
-                    <strong id="modalRoute">-</strong>
-                </div>
-
-                <div class="info-item">
-                    <span>نوع التعامل</span>
-                    <strong id="modalDeal">-</strong>
-                </div>
-
-                <div class="info-item">
-                    <span>تاريخ العقد</span>
-                    <strong id="modalContract">-</strong>
-                </div>
-
-                <div class="info-item">
-                    <span>ترميز العميل</span>
-                    <strong id="modalCode">-</strong>
-                </div>
-
-                <div class="info-item">
-                    <span>التسلسل</span>
-                    <strong id="modalSerial">-</strong>
-                </div>
-
-                <div class="info-item">
-                    <span>الملاحظات</span>
-                    <strong id="modalNotes">-</strong>
-                </div>
-
-            </div>
-
-
-            <div class="section-title">
-                🧊 معلومات البرادات
-            </div>
-
-            <div id="modalFridges"></div>
-
-        </div>
+        <div id="detailGrid" class="detail-grid"></div>
 
     </div>
 
 </div>
 
+</div>
+
+
+<div class="footer">
+    © 2026 نظام معلومات العملاء
+</div>
+
 
 <script>
 
-/* ==========================================
-   رموز الدخول - للتجربة حالياً
-========================================== */
+/*
+=========================================
+بيانات العملاء
+=========================================
 
-const ADMIN_PASSWORD = "ADMIN123";
+هنا لاحقاً نربط بيانات Excel الأصلية.
 
-const PUBLIC_PASSWORD = "SEARCH123";
+حالياً هذه بيانات تجريبية فقط للواجهة.
+لا تعتبرها بيانات ملف Excel.
+*/
 
+const customers = [
 
-/* ==========================================
-   البيانات
-========================================== */
+    {
+        commercial:"بركات الزهراء",
+        name:"حامد مراد عطية",
+        phone:"07712345678",
+        route:"12",
+        address:"بغداد - حي الجامعة"
+    },
 
-let customers = [];
+    {
+        commercial:"بركات الزهراء",
+        name:"علي كاظم حسن",
+        phone:"07823456789",
+        route:"7",
+        address:"بغداد - حي الجامعة"
+    },
 
-let loginType = "";
-
-
-/* ==========================================
-   اختيار نوع الدخول
-========================================== */
-
-function chooseLogin(type){
-
-    loginType = type;
-
-    const box =
-        document.getElementById("passwordBox");
-
-    const title =
-        document.getElementById("passwordTitle");
-
-    const input =
-        document.getElementById("passwordInput");
-
-    box.classList.add("show");
-
-    if(type === "admin"){
-
-        title.textContent =
-            "🔐 رمز دخول الإدارة";
-
-    }else{
-
-        title.textContent =
-            "🔐 رمز دخول البحث العام";
-
+    {
+        commercial:"بركات الزهراء",
+        name:"محمد عبد الحسين",
+        phone:"07734567890",
+        route:"15",
+        address:"بغداد - حي الجامعة"
     }
 
-    input.value = "";
+];
 
-    input.focus();
-}
 
+let currentResults = [];
 
-/* ==========================================
-   إلغاء
-========================================== */
 
-function cancelLogin(){
+function normalize(text){
 
-    loginType = "";
-
-    document
-        .getElementById("passwordBox")
-        .classList.remove("show");
-
-}
-
-
-/* ==========================================
-   Enter
-========================================== */
-
-function passwordEnter(event){
-
-    if(event.key === "Enter"){
-
-        login();
-
-    }
-
-}
-
-
-/* ==========================================
-   الدخول
-========================================== */
-
-function login(){
-
-    const password =
-        document
-        .getElementById("passwordInput")
-        .value;
-
-    if(loginType === "admin"){
-
-        if(password === ADMIN_PASSWORD){
-
-            openPage("adminPage");
-
-        }else{
-
-            alert("رمز الإدارة غير صحيح.");
-
-        }
-
-    }
-
-    if(loginType === "public"){
-
-        if(password === PUBLIC_PASSWORD){
-
-            openPage("publicPage");
-
-        }else{
-
-            alert("رمز البحث العام غير صحيح.");
-
-        }
-
-    }
-
-}
-
-
-/* ==========================================
-   فتح صفحة
-========================================== */
-
-function openPage(pageId){
-
-    document
-        .getElementById("homePage")
-        .classList.remove("show");
-
-    document
-        .getElementById("adminPage")
-        .classList.remove("show");
-
-    document
-        .getElementById("publicPage")
-        .classList.remove("show");
-
-    document
-        .getElementById(pageId)
-        .classList.add("show");
-
-    document
-        .getElementById("passwordBox")
-        .classList.remove("show");
-
-    loadRepresentatives();
-
-}
-
-
-/* ==========================================
-   الرئيسية
-========================================== */
-
-function goHome(){
-
-    document
-        .getElementById("adminPage")
-        .classList.remove("show");
-
-    document
-        .getElementById("publicPage")
-        .classList.remove("show");
-
-    document
-        .getElementById("homePage")
-        .classList.add("show");
-
-    loginType = "";
-
-    document
-        .getElementById("passwordInput")
-        .value = "";
-
-}
-
-
-/* ==========================================
-   قراءة Excel
-========================================== */
-
-document
-    .getElementById("excelFile")
-    .addEventListener(
-        "change",
-        function(event){
-
-            const file =
-                event.target.files[0];
-
-            if(!file){
-                return;
-            }
-
-            const status =
-                document
-                .getElementById("excelStatus");
-
-            status.textContent =
-                "⏳ جاري قراءة ملف Excel...";
-
-            const reader =
-                new FileReader();
-
-            reader.onload =
-                function(e){
-
-                    try{
-
-                        const data =
-                            new Uint8Array(
-                                e.target.result
-                            );
-
-                        const workbook =
-                            XLSX.read(
-                                data,
-                                {
-                                    type:"array",
-                                    cellDates:true
-                                }
-                            );
-
-                        customers = [];
-
-                        workbook.SheetNames.forEach(
-                            sheetName => {
-
-                                const sheet =
-                                    workbook.Sheets[
-                                        sheetName
-                                    ];
-
-                                const rows =
-                                    XLSX.utils.sheet_to_json(
-                                        sheet,
-                                        {
-                                            header:1,
-                                            defval:""
-                                        }
-                                    );
-
-                                processSheet(
-                                    sheetName,
-                                    rows
-                                );
-
-                            }
-                        );
-
-                        customers =
-                            customers.filter(
-                                c =>
-                                    c.commercialName ||
-                                    c.fullName ||
-                                    c.phone ||
-                                    c.fridges.length
-                            );
-
-                        loadRepresentatives();
-
-                        updateStats();
-
-                        status.textContent =
-                            "✅ تم تحميل ملف Excel بنجاح";
-
-                        alert(
-                            "تم تحميل ملف Excel بنجاح."
-                        );
-
-                    }
-                    catch(error){
-
-                        console.error(error);
-
-                        status.textContent =
-                            "❌ حدث خطأ في قراءة الملف.";
-
-                        alert(
-                            "حدث خطأ أثناء قراءة ملف Excel."
-                        );
-
-                    }
-
-                };
-
-            reader.readAsArrayBuffer(file);
-
-        }
-    );
-
-
-/* ==========================================
-   معالجة الشيت
-========================================== */
-
-function processSheet(
-    representative,
-    rows
-){
-
-    let currentCustomer = null;
-
-    /*
-       نفترض أن بيانات العملاء تبدأ
-       من الصف 12 في كل شيت.
-    */
-
-    for(
-        let i = 11;
-        i < rows.length;
-        i++
-    ){
-
-        const row =
-            rows[i] || [];
-
-
-        const serial =
-            clean(row[0]);
-
-        const commercialName =
-            clean(row[1]);
-
-        const fullName =
-            clean(row[2]);
-
-        const phone =
-            clean(row[3]);
-
-        const address =
-            clean(row[4]);
-
-        const fridgeType =
-            clean(row[5]);
-
-        const fridgeNumber =
-            clean(row[6]);
-
-        const stands =
-            clean(row[7]);
-
-        const deal =
-            clean(row[8]);
-
-        const contractDate =
-            clean(row[9]);
-
-        const route =
-            clean(row[10]);
-
-        const customerCode =
-            clean(row[11]);
-
-        const notes =
-            clean(row[12]);
-
-
-        if(serial !== ""){
-
-            if(currentCustomer){
-
-                customers.push(
-                    currentCustomer
-                );
-
-            }
-
-            currentCustomer = {
-
-                rep:representative,
-
-                serial:serial,
-
-                commercialName:commercialName,
-
-                fullName:fullName,
-
-                phone:phone,
-
-                address:address,
-
-                deal:deal,
-
-                contractDate:contractDate,
-
-                route:route,
-
-                customerCode:customerCode,
-
-                notes:notes,
-
-                fridges:[]
-
-            };
-
-
-            if(
-                fridgeType ||
-                fridgeNumber ||
-                stands
-            ){
-
-                currentCustomer.fridges.push({
-
-                    type:fridgeType,
-
-                    number:fridgeNumber,
-
-                    stands:stands
-
-                });
-
-            }
-
-        }
-        else if(
-            currentCustomer &&
-            (
-                fridgeType ||
-                fridgeNumber ||
-                stands
-            )
-        ){
-
-            currentCustomer.fridges.push({
-
-                type:fridgeType,
-
-                number:fridgeNumber,
-
-                stands:stands
-
-            });
-
-        }
-
-    }
-
-
-    if(currentCustomer){
-
-        customers.push(
-            currentCustomer
-        );
-
-    }
-
-}
-
-
-/* ==========================================
-   تنظيف البيانات
-========================================== */
-
-function clean(value){
-
-    if(
-        value === null ||
-        value === undefined
-    ){
-
-        return "";
-
-    }
-
-    if(
-        String(value).trim() === ""
-    ){
-
-        return "";
-
-    }
-
-    if(value instanceof Date){
-
-        return value.toLocaleDateString(
-            "ar-IQ"
-        );
-
-    }
-
-    return String(value).trim();
-
-}
-
-
-/* ==========================================
-   توحيد النص
-========================================== */
-
-function normalizeText(value){
-
-    if(
-        value === null ||
-        value === undefined
-    ){
-
-        return "";
-
-    }
-
-    return String(value)
-        .replace(/[\u064B-\u065F\u0670]/g,"")
-        .replace(/ـ/g,"")
-        .replace(/[أإآ]/g,"ا")
-        .replace(/ى/g,"ي")
-        .replace(/ة/g,"ه")
-        .replace(/\s+/g," ")
+    return String(text || "")
         .trim()
-        .toLowerCase();
+        .toLowerCase()
+        .replace(/\s+/g," ");
 
 }
 
 
-/* ==========================================
-   توحيد الأرقام
-========================================== */
+function searchCustomer(){
 
-function normalizeNumbers(value){
+    const query =
+        normalize(
+            document.getElementById("searchInput").value
+        );
 
-    if(
-        value === null ||
-        value === undefined
-    ){
+    const results =
+        document.getElementById("results");
 
-        return "";
+    const count =
+        document.getElementById("resultCount");
 
+
+    if(!query){
+
+        results.innerHTML =
+            '<div class="empty">اكتب اسم العميل أولاً.</div>';
+
+        count.textContent = "";
+
+        return;
     }
 
-    return String(value)
-        .replace(/[٠-٩]/g,d =>
-            "٠١٢٣٤٥٦٧٨٩".indexOf(d)
-        )
-        .replace(/[۰-۹]/g,d =>
-            "۰۱۲۳۴۵۶۷۸۹".indexOf(d)
-        )
-        .trim();
 
-}
+    currentResults =
+        customers.filter(customer => {
 
-
-/* ==========================================
-   تحميل أسماء المندوبين
-========================================== */
-
-function loadRepresentatives(){
-
-    const selects = [
-
-        document.getElementById(
-            "adminRepSelect"
-        ),
-
-        document.getElementById(
-            "publicRepSelect"
-        )
-
-    ];
-
-    const reps = [
-        ...new Set(
-            customers
-            .map(c => c.rep)
-            .filter(Boolean)
-        )
-    ];
-
-    selects.forEach(select => {
-
-        const oldValue =
-            select.value;
-
-        select.innerHTML =
-            `<option value="">
-                كل المندوبين
-            </option>`;
-
-        reps.forEach(rep => {
-
-            const option =
-                document.createElement(
-                    "option"
-                );
-
-            option.value = rep;
-
-            option.textContent = rep;
-
-            select.appendChild(
-                option
-            );
+            return normalize(customer.commercial).includes(query)
+                || normalize(customer.name).includes(query);
 
         });
 
-        if(
-            reps.includes(oldValue)
-        ){
-
-            select.value =
-                oldValue;
-
-        }
-
-    });
-
-}
-
-
-/* ==========================================
-   البحث
-========================================== */
-
-function search(type){
-
-    if(customers.length === 0){
-
-        alert(
-            "قاعدة البيانات فارغة. يجب على الإدارة رفع ملف Excel أولاً."
-        );
-
-        return;
-
-    }
-
-
-    let input;
-    let select;
-    let resultsContainer;
-    let countElement;
-
-
-    if(type === "admin"){
-
-        input =
-            document.getElementById(
-                "adminSearchInput"
-            );
-
-        select =
-            document.getElementById(
-                "adminRepSelect"
-            );
-
-        resultsContainer =
-            document.getElementById(
-                "adminResults"
-            );
-
-        countElement =
-            document.getElementById(
-                "adminResultsCount"
-            );
-
-    }else{
-
-        input =
-            document.getElementById(
-                "publicSearchInput"
-            );
-
-        select =
-            document.getElementById(
-                "publicRepSelect"
-            );
-
-        resultsContainer =
-            document.getElementById(
-                "publicResults"
-            );
-
-        countElement =
-            document.getElementById(
-                "publicResultsCount"
-            );
-
-    }
-
-
-    const text =
-        input.value.trim();
-
-    const selectedRep =
-        select.value;
-
-
-    if(!text){
-
-        resultsContainer.innerHTML = `
-
-            <div class="empty">
-
-                <div class="empty-icon">
-                    🔎
-                </div>
-
-                <h3>
-                    اكتب شيئاً للبحث
-                </h3>
-
-                <p>
-                    ابحث بالاسم التجاري أو الاسم الثلاثي أو رقم البراد.
-                </p>
-
-            </div>
-
-        `;
-
-        countElement.textContent =
-            "0 نتيجة";
-
-        return;
-
-    }
-
-
-    const searchText =
-        normalizeText(text);
-
-    const searchNumber =
-        normalizeNumbers(text);
-
-
-    const results =
-        customers.filter(
-            customer => {
-
-                if(
-                    selectedRep &&
-                    customer.rep !== selectedRep
-                ){
-
-                    return false;
-
-                }
-
-
-                const commercial =
-                    normalizeText(
-                        customer.commercialName
-                    );
-
-                const full =
-                    normalizeText(
-                        customer.fullName
-                    );
-
-
-                const serial =
-                    normalizeNumbers(
-                        customer.serial
-                    );
-
-
-                const fridgeMatch =
-                    customer.fridges.some(
-                        fridge => {
-
-                            const number =
-                                normalizeNumbers(
-                                    fridge.number
-                                );
-
-                            return(
-                                number &&
-                                number.includes(
-                                    searchNumber
-                                )
-                            );
-
-                        }
-                    );
-
-
-                return(
-
-                    commercial.includes(
-                        searchText
-                    )
-
-                    ||
-
-                    full.includes(
-                        searchText
-                    )
-
-                    ||
-
-                    serial.includes(
-                        searchNumber
-                    )
-
-                    ||
-
-                    fridgeMatch
-
-                );
-
-            }
-        );
-
-
-    displayResults(
-        results,
-        resultsContainer,
-        countElement
-    );
-
-}
-
-
-/* ==========================================
-   عرض النتائج
-========================================== */
-
-function displayResults(
-    results,
-    container,
-    count
-){
-
-    container.innerHTML = "";
 
     count.textContent =
-        results.length +
-        " نتيجة";
+        " (" + currentResults.length + ")";
 
 
-    if(results.length === 0){
+    if(currentResults.length === 0){
 
-        container.innerHTML = `
-
-            <div class="empty">
-
-                <div class="empty-icon">
-                    🔍
-                </div>
-
-                <h3>
-                    لا توجد نتائج
-                </h3>
-
-                <p>
-                    جربي اسم آخر أو رقم براد مختلف.
-                </p>
-
-            </div>
-
-        `;
+        results.innerHTML =
+            '<div class="empty">لم يتم العثور على عميل مطابق.</div>';
 
         return;
-
     }
 
 
-    const groups = {};
+    results.innerHTML =
+        currentResults.map((customer,index) => {
 
+            return `
 
-    results.forEach(
-        customer => {
+            <div class="result"
+                 onclick="showDetails(${index})">
 
-            if(!groups[customer.rep]){
-
-                groups[customer.rep] = [];
-
-            }
-
-            groups[customer.rep].push(
-                customer
-            );
-
-        }
-    );
-
-
-    Object.keys(groups).forEach(
-        rep => {
-
-            const section =
-                document.createElement(
-                    "div"
-                );
-
-            section.className =
-                "rep-section";
-
-
-            section.innerHTML = `
-
-                <div class="rep-title">
-
-                    <div class="rep-icon">
-                        👤
+                <div>
+                    <div class="value">
+                        ${customer.commercial}
                     </div>
 
-                    <span>
-                        المندوب:
-                        ${escapeHtml(rep)}
-                    </span>
+                    <div class="label">
+                        الاسم التجاري
+                    </div>
+                </div>
+
+
+                <div>
+
+                    <div class="value">
+                        ${customer.name}
+                    </div>
+
+                    <div class="label">
+                        الاسم الثلاثي
+                    </div>
 
                 </div>
+
+
+                <div>
+
+                    <div class="value">
+                        ${customer.phone}
+                    </div>
+
+                    <div class="label">
+                        الهاتف
+                    </div>
+
+                </div>
+
+
+                <div class="arrow">
+                    ‹
+                </div>
+
+            </div>
 
             `;
 
-
-            groups[rep].forEach(
-                customer => {
-
-                    const card =
-                        document.createElement(
-                            "div"
-                        );
-
-                    card.className =
-                        "customer-card";
-
-
-                    card.onclick =
-                        () => openModal(
-                            customer
-                        );
-
-
-                    const fridgeNumbers =
-                        customer.fridges
-                        .map(
-                            f => f.number
-                        )
-                        .filter(Boolean)
-                        .join("، ");
-
-
-                    card.innerHTML = `
-
-                        <div class="customer-name">
-
-                            ${escapeHtml(
-                                customer.commercialName ||
-                                "بدون اسم تجاري"
-                            )}
-
-                        </div>
-
-                        <div class="customer-fullname">
-
-                            ${escapeHtml(
-                                customer.fullName ||
-                                "الاسم الثلاثي غير مسجل"
-                            )}
-
-                        </div>
-
-
-                        <div class="customer-details">
-
-
-                            <div class="detail-box">
-
-                                <div class="detail-label">
-                                    👤 المندوب
-                                </div>
-
-                                <div class="detail-value">
-                                    ${escapeHtml(
-                                        customer.rep || "-"
-                                    )}
-                                </div>
-
-                            </div>
-
-
-                            <div class="detail-box">
-
-                                <div class="detail-label">
-                                    🧊 رقم البراد
-                                </div>
-
-                                <div class="detail-value">
-                                    ${escapeHtml(
-                                        fridgeNumbers || "-"
-                                    )}
-                                </div>
-
-                            </div>
-
-
-                            <div class="detail-box">
-
-                                <div class="detail-label">
-                                    📍 العنوان
-                                </div>
-
-                                <div class="detail-value">
-                                    ${escapeHtml(
-                                        customer.address || "-"
-                                    )}
-                                </div>
-
-                            </div>
-
-
-                            <div class="detail-box">
-
-                                <div class="detail-label">
-                                    📞 الهاتف
-                                </div>
-
-                                <div class="detail-value">
-                                    ${escapeHtml(
-                                        customer.phone || "-"
-                                    )}
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    `;
-
-
-                    section.appendChild(
-                        card
-                    );
-
-                }
-            );
-
-
-            container.appendChild(
-                section
-            );
-
-        }
-    );
+        }).join("");
 
 }
 
 
-/* ==========================================
-   تفاصيل العميل
-========================================== */
+function showDetails(index){
 
-function openModal(customer){
+    const customer =
+        currentResults[index];
 
-    document
-        .getElementById(
-            "modalCustomerName"
-        )
-        .textContent =
-            customer.commercialName ||
-            "بدون اسم";
+    const grid =
+        document.getElementById("detailGrid");
 
 
-    document
-        .getElementById(
-            "modalCustomerFullName"
-        )
-        .textContent =
-            customer.fullName || "";
+    grid.innerHTML = `
 
+        <div class="detail-item">
 
-    document
-        .getElementById("modalRep")
-        .textContent =
-            customer.rep || "-";
-
-
-    document
-        .getElementById("modalPhone")
-        .textContent =
-            customer.phone || "-";
-
-
-    document
-        .getElementById("modalAddress")
-        .textContent =
-            customer.address || "-";
-
-
-    document
-        .getElementById("modalRoute")
-        .textContent =
-            customer.route || "-";
-
-
-    document
-        .getElementById("modalDeal")
-        .textContent =
-            customer.deal || "-";
-
-
-    document
-        .getElementById("modalContract")
-        .textContent =
-            customer.contractDate || "-";
-
-
-    document
-        .getElementById("modalCode")
-        .textContent =
-            customer.customerCode || "-";
-
-
-    document
-        .getElementById("modalSerial")
-        .textContent =
-            customer.serial || "-";
-
-
-    document
-        .getElementById("modalNotes")
-        .textContent =
-            customer.notes || "-";
-
-
-    const fridgeContainer =
-        document.getElementById(
-            "modalFridges"
-        );
-
-
-    fridgeContainer.innerHTML = "";
-
-
-    if(
-        customer.fridges.length === 0
-    ){
-
-        fridgeContainer.innerHTML = `
-
-            <div class="empty">
-                لا توجد معلومات برادات.
+            <div class="detail-label">
+                الاسم التجاري
             </div>
 
-        `;
+            <div class="detail-value">
+                ${customer.commercial}
+            </div>
 
-    }else{
-
-        customer.fridges.forEach(
-            (fridge,index) => {
-
-                fridgeContainer.innerHTML += `
-
-                    <div class="fridge-card">
-
-                        <div class="fridge-row">
+        </div>
 
 
-                            <div class="fridge-item">
+        <div class="detail-item">
 
-                                <span>
-                                    البراد
-                                </span>
+            <div class="detail-label">
+                الاسم الثلاثي
+            </div>
 
-                                <strong>
-                                    ${index + 1}
-                                </strong>
+            <div class="detail-value">
+                ${customer.name}
+            </div>
 
-                            </div>
-
-
-                            <div class="fridge-item">
-
-                                <span>
-                                    النوع
-                                </span>
-
-                                <strong>
-                                    ${escapeHtml(
-                                        fridge.type || "-"
-                                    )}
-                                </strong>
-
-                            </div>
+        </div>
 
 
-                            <div class="fridge-item">
+        <div class="detail-item">
 
-                                <span>
-                                    رقم البراد
-                                </span>
+            <div class="detail-label">
+                الهاتف
+            </div>
 
-                                <strong>
-                                    ${escapeHtml(
-                                        fridge.number || "-"
-                                    )}
-                                </strong>
+            <div class="detail-value">
+                ${customer.phone}
+            </div>
 
-                            </div>
+        </div>
 
 
-                            <div class="fridge-item">
+        <div class="detail-item">
 
-                                <span>
-                                    الستاندات
-                                </span>
+            <div class="detail-label">
+                المسار
+            </div>
 
-                                <strong>
-                                    ${escapeHtml(
-                                        fridge.stands || "-"
-                                    )}
-                                </strong>
+            <div class="detail-value">
+                ${customer.route}
+            </div>
 
-                            </div>
+        </div>
 
 
-                        </div>
+        <div class="detail-item">
 
-                    </div>
+            <div class="detail-label">
+                العنوان
+            </div>
 
-                `;
+            <div class="detail-value">
+                ${customer.address}
+            </div>
 
-            }
-        );
+        </div>
+
+    `;
+
+
+    document.getElementById("details").style.display =
+        "block";
+
+
+    document.getElementById("details")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+function closeDetails(){
+
+    document.getElementById("details").style.display =
+        "none";
+
+}
+
+
+document
+.getElementById("searchInput")
+.addEventListener("keydown",function(event){
+
+    if(event.key === "Enter"){
+
+        searchCustomer();
 
     }
 
-
-    document
-        .getElementById(
-            "customerModal"
-        )
-        .classList.add("show");
-
-}
-
-
-/* ==========================================
-   إغلاق التفاصيل
-========================================== */
-
-function closeModal(){
-
-    document
-        .getElementById(
-            "customerModal"
-        )
-        .classList.remove("show");
-
-}
-
-
-document
-    .getElementById("customerModal")
-    .addEventListener(
-        "click",
-        function(event){
-
-            if(event.target === this){
-
-                closeModal();
-
-            }
-
-        }
-    );
-
-
-/* ==========================================
-   Enter للبحث
-========================================== */
-
-document
-    .getElementById("adminSearchInput")
-    .addEventListener(
-        "keydown",
-        function(event){
-
-            if(event.key === "Enter"){
-
-                search("admin");
-
-            }
-
-        }
-    );
-
-
-document
-    .getElementById("publicSearchInput")
-    .addEventListener(
-        "keydown",
-        function(event){
-
-            if(event.key === "Enter"){
-
-                search("public");
-
-            }
-
-        }
-    );
-
-
-/* ==========================================
-   الإحصائيات
-========================================== */
-
-function updateStats(){
-
-    const customerCount =
-        customers.length;
-
-
-    const repCount =
-        new Set(
-            customers
-            .map(c => c.rep)
-            .filter(Boolean)
-        ).size;
-
-
-    const fridgeCount =
-        customers.reduce(
-            (total,customer) =>
-                total +
-                customer.fridges.length,
-            0
-        );
-
-
-    document
-        .getElementById(
-            "customerCount"
-        )
-        .textContent =
-            customerCount;
-
-
-    document
-        .getElementById(
-            "repCount"
-        )
-        .textContent =
-            repCount;
-
-
-    document
-        .getElementById(
-            "fridgeCount"
-        )
-        .textContent =
-            fridgeCount;
-
-}
-
-
-/* ==========================================
-   حماية النصوص
-========================================== */
-
-function escapeHtml(value){
-
-    if(
-        value === null ||
-        value === undefined
-    ){
-
-        return "";
-
-    }
-
-    return String(value)
-
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-
-}
+});
 
 </script>
 
