@@ -11,149 +11,218 @@
 body{
 margin:0;
 background:#f4f7fb;
-color:#172b4d;
+color:#172033;
 font-family:Tahoma,Arial,sans-serif
 }
 
-header{
-background:#0757a8;
+.top{
+background:linear-gradient(135deg,#063b78,#0878d1);
 color:#fff;
-padding:18px 5%;
+padding:24px 18px
+}
+
+.topin{
+max-width:1150px;
+margin:auto;
 display:flex;
 justify-content:space-between;
 align-items:center;
-gap:15px
+gap:18px
 }
 
 .brand{
-font-size:22px;
+font-size:25px;
 font-weight:800
 }
 
 .sub{
-font-size:12px;
-opacity:.86;
-margin-top:4px
+font-size:13px;
+opacity:.88;
+margin-top:6px
 }
 
 .user{
 background:#ffffff1c;
-padding:9px 14px;
-border-radius:10px
+border:1px solid #ffffff33;
+padding:10px 15px;
+border-radius:12px
 }
 
-main{
-max-width:1200px;
-margin:28px auto;
+.wrap{
+max-width:1150px;
+margin:32px auto;
 padding:0 18px
 }
 
-.box{
+.panel{
 background:#fff;
-border:1px solid #e1e8f0;
-border-radius:18px;
-padding:24px;
-box-shadow:0 8px 30px #14325a12
+border:1px solid #e2e9f1;
+border-radius:22px;
+padding:30px;
+box-shadow:0 10px 35px #17365d12
 }
 
-h1{
+.title{
 text-align:center;
-font-size:25px;
+font-size:28px;
+color:#063b78;
 margin:0 0 8px
 }
 
 .hint{
 text-align:center;
 color:#718096;
-font-size:13px;
-margin-bottom:22px
+font-size:14px;
+margin-bottom:25px
 }
 
-.filters{
+.searchrow{
 display:grid;
-grid-template-columns:220px 1fr 110px;
-gap:10px
+grid-template-columns:235px 1fr 115px;
+gap:12px
 }
 
 select,input,button{
+height:54px;
+border-radius:13px;
 font-family:inherit;
-font-size:15px;
-border-radius:11px;
-height:50px
+font-size:15px
 }
 
 select,input{
-border:1px solid #ccd8e5;
+border:1px solid #cbd8e6;
 background:#fff;
-padding:0 14px;
+padding:0 15px;
 outline:none
 }
 
-input:focus,select:focus{
-border-color:#0875d1;
-box-shadow:0 0 0 3px #0875d11a
+select:focus,input:focus{
+border-color:#0878d1;
+box-shadow:0 0 0 4px #0878d11c
 }
 
-.filters button{
+.searchbtn{
 border:0;
-background:#0875d1;
+background:#0878d1;
 color:#fff;
 font-weight:800;
 cursor:pointer
 }
 
-section{
-margin-top:28px
+.searchbtn:hover{
+background:#075fa8
 }
 
-h2{
-font-size:19px;
+.suggestions{
+position:relative
+}
+
+.suggestbox{
+position:absolute;
+z-index:20;
+right:0;
+left:0;
+top:59px;
+background:#fff;
+border:1px solid #dbe5ef;
+border-radius:14px;
+box-shadow:0 12px 30px #17365d22;
+overflow:hidden;
+display:none
+}
+
+.suggestbox.show{
+display:block
+}
+
+.suggest{
+padding:13px 15px;
+border-bottom:1px solid #edf1f5;
+cursor:pointer
+}
+
+.suggest:last-child{
+border-bottom:0
+}
+
+.suggest:hover{
+background:#f2f7fd
+}
+
+.suggest b{
+color:#063b78
+}
+
+.suggest small{
+display:block;
+color:#7b8794;
+margin-top:4px
+}
+
+.note{
+text-align:center;
+color:#7b8794;
+font-size:12px;
+margin-top:12px
+}
+
+.section{
+margin-top:30px
+}
+
+.section h2{
+font-size:20px;
+color:#063b78;
 margin:0 0 14px
 }
 
 .results{
 display:grid;
-gap:10px
+gap:12px
 }
 
 .result{
+background:#fff;
 border:1px solid #e1e8f0;
-border-radius:13px;
-padding:14px 16px;
+border-radius:15px;
+padding:17px;
 display:grid;
-grid-template-columns:1.5fr 1fr 1fr 25px;
-gap:14px;
+grid-template-columns:1.5fr 1.35fr 1fr 35px;
 align-items:center;
+gap:15px;
 cursor:pointer;
-background:#fff
+transition:.18s
 }
 
 .result:hover{
-box-shadow:0 5px 18px #14467816;
-border-color:#b9d1e8
+transform:translateY(-2px);
+border-color:#0878d1;
+box-shadow:0 8px 22px #0878d118
 }
 
 .value{
-font-weight:800
+font-weight:800;
+font-size:15px
 }
 
 .label{
 font-size:11px;
-color:#7b8794;
+color:#8491a2;
 margin-top:5px
 }
 
 .arrow{
-font-size:25px;
-color:#0875d1
+font-size:28px;
+color:#0878d1
 }
 
 .empty{
+background:#fff;
+border:1px dashed #ccd8e5;
+border-radius:15px;
+padding:35px;
 text-align:center;
-color:#718096;
-padding:28px;
-border:1px dashed #d9e2ec;
-border-radius:12px
+color:#718096
 }
 
 .stats{
@@ -163,33 +232,34 @@ gap:12px
 }
 
 .stat{
-background:#f2f7fd;
-border-radius:13px;
+background:#fff;
+border:1px solid #e1e8f0;
+border-radius:15px;
 padding:18px;
 text-align:center
 }
 
 .num{
+color:#0878d1;
 font-size:25px;
-font-weight:800;
-color:#0875d1
+font-weight:800
 }
 
 .muted{
-font-size:12px;
 color:#718096;
-margin-top:4px
+font-size:12px;
+margin-top:5px
 }
 
 .modal{
 position:fixed;
 inset:0;
-background:#0b1f3388;
+background:#071b31bb;
 display:none;
 align-items:center;
 justify-content:center;
 padding:18px;
-z-index:5
+z-index:100
 }
 
 .modal.show{
@@ -201,52 +271,53 @@ width:min(900px,100%);
 max-height:90vh;
 overflow:auto;
 background:#fff;
-border-radius:18px;
-padding:24px;
-position:relative
+border-radius:22px;
+padding:28px;
+position:relative;
+box-shadow:0 20px 60px #0005
 }
 
 .close{
 position:absolute;
 left:18px;
-top:15px;
+top:18px;
 width:42px;
 height:42px;
-background:#eef4fa;
-color:#0757a8;
-border-radius:50%;
-font-size:22px;
 border:0;
+border-radius:50%;
+background:#eef4fa;
+color:#063b78;
+font-size:25px;
 cursor:pointer
 }
 
 .card h2{
-margin:0 0 5px;
-font-size:23px;
-color:#0757a8
+color:#063b78;
+margin:0 0 7px;
+font-size:24px
 }
 
 .cardsub{
 color:#718096;
-font-size:13px;
-margin-bottom:18px
+margin-bottom:20px;
+font-size:13px
 }
 
 .grid{
 display:grid;
 grid-template-columns:repeat(2,1fr);
-gap:10px
+gap:12px
 }
 
 .info{
 background:#f7f9fc;
-border:1px solid #e4ebf2;
-border-radius:12px;
-padding:13px
+border:1px solid #e3eaf2;
+border-radius:13px;
+padding:15px
 }
 
 .info .label{
-margin:0 0 5px
+margin:0 0 7px
 }
 
 .info .value{
@@ -254,32 +325,45 @@ font-size:16px
 }
 
 .coolers{
-margin-top:18px
+margin-top:22px
 }
 
 .cooler{
-border:1px solid #dce6ef;
-border-radius:12px;
-padding:13px;
-margin-top:8px;
+background:#f8fbff;
+border:1px solid #d8e5f1;
+border-radius:14px;
+padding:15px;
+margin-top:10px;
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:10px
+gap:15px
 }
 
 .badge{
 display:inline-block;
-background:#eaf4ff;
-color:#0757a8;
-padding:4px 9px;
+background:#e5f2ff;
+color:#075da8;
+padding:5px 12px;
 border-radius:20px;
 font-size:12px;
 font-weight:bold
 }
 
+.footer{
+text-align:center;
+color:#7b8794;
+font-size:12px;
+margin:24px 0
+}
+
 @media(max-width:750px){
 
-.filters{
+.topin{
+flex-direction:column;
+text-align:center
+}
+
+.searchrow{
 grid-template-columns:1fr
 }
 
@@ -291,47 +375,83 @@ grid-template-columns:1fr 1fr
 grid-template-columns:1fr 1fr
 }
 
+.grid,.cooler{
+grid-template-columns:1fr
+}
+
 }
 </style>
 </head>
 
 <body>
 
-<header>
+<header class="top">
+
+<div class="topin">
+
 <div>
 <div class="brand">عملاء برادات مركز الحلة</div>
-<div class="sub">نظام معلومات العملاء</div>
+<div class="sub">نظام البحث والاستعلام عن العملاء والبرادات</div>
 </div>
 
 <div class="user">👤 مرحباً، مستخدم</div>
-</header>
 
-<main>
-
-<div class="box">
-
-<h1>🔎 البحث عن العميل</h1>
-
-<div class="hint">
-ابحث بالاسم التجاري أو الاسم الثلاثي أو رقم الهاتف أو رقم البراد، ويمكنك تحديد المندوب.
 </div>
 
-<div class="filters">
+</header>
+
+
+<main class="wrap">
+
+<div class="panel">
+
+<h1 class="title">🔎 البحث عن العميل</h1>
+
+<div class="hint">
+ابحث بالاسم التجاري أو الاسم الثلاثي أو رقم الهاتف أو رقم البراد
+</div>
+
+
+<div class="searchrow">
 
 <select id="rep">
 <option value="">كل المندوبين</option>
 </select>
 
+
+<div class="suggestions">
+
 <input
 id="q"
-placeholder="اكتب الاسم التجاري أو الاسم الثلاثي أو رقم البراد..."
+autocomplete="off"
+placeholder="اكتب اسم العميل أو رقم البراد..."
 >
 
-<button onclick="search()">بحث</button>
+<div
+id="suggestBox"
+class="suggestbox"
+></div>
 
 </div>
 
-<section>
+
+<button
+class="searchbtn"
+id="searchBtn"
+>
+بحث
+</button>
+
+</div>
+
+
+<div class="note">
+إذا اخترت مندوباً، يكون البحث داخل عملائه فقط.
+وإذا تركته على «كل المندوبين» يكون البحث عاماً.
+</div>
+
+
+<div class="section">
 
 <h2>
 👥 نتائج البحث
@@ -339,32 +459,35 @@ placeholder="اكتب الاسم التجاري أو الاسم الثلاثي �
 </h2>
 
 <div id="results">
+
 <div class="empty">
-اكتب اسم العميل ثم اضغط بحث.
-</div>
+اكتب اسم العميل أو جزءاً منه ثم اضغط بحث.
 </div>
 
-</section>
+</div>
 
-<section>
+</div>
+
+
+<div class="section">
 
 <h2>📊 معلومات العملاء</h2>
 
 <div class="stats">
 
 <div class="stat">
-<div class="num">2097</div>
+<div class="num" id="total">0</div>
 <div class="muted">إجمالي العملاء</div>
 </div>
 
 <div class="stat">
-<div class="num">24</div>
+<div class="num" id="repsCount">0</div>
 <div class="muted">المندوبين</div>
 </div>
 
 <div class="stat">
 <div class="num">✓</div>
-<div class="muted">بيانات Excel محمّلة</div>
+<div class="muted">البيانات محمّلة</div>
 </div>
 
 <div class="stat">
@@ -373,26 +496,32 @@ placeholder="اكتب الاسم التجاري أو الاسم الثلاثي �
 </div>
 
 </div>
-</section>
 
 </div>
+
+</div>
+
+<div class="footer">
+© 2026 نظام معلومات العملاء
+</div>
+
 </main>
 
 
 <div
 class="modal"
 id="modal"
-onclick="if(event.target===this)closeCard()"
 >
 
 <div class="card">
 
 <button
 class="close"
-onclick="closeCard()"
+id="closeBtn"
 >
 ×
 </button>
+
 
 <h2 id="mName"></h2>
 
@@ -401,10 +530,12 @@ class="cardsub"
 id="mSub"
 ></div>
 
+
 <div
 class="grid"
 id="mGrid"
 ></div>
+
 
 <div class="coolers">
 
@@ -418,12 +549,22 @@ id="mGrid"
 </div>
 
 </div>
+
 </div>
 
 
 <script>
 
-/* بيانات العملاء */
+/*
+=================================================
+بيانات العملاء
+=================================================
+
+مهم:
+هنا بيانات العملاء الموجودة في ملفك.
+لا تحذف البيانات الموجودة عندك عند استبدال الواجهة.
+=================================================
+*/
 
 const data = [
 
@@ -483,19 +624,23 @@ const data = [
 
 {"rep":"مالك عبيد","commercial":"فاضل","full":"فاضل عباس مكي","phone":"7800227311","address":"مركز شرطة حي بابل","route":"A","coolers":[{"type":"","number":"لايوجد براد"}]},
 
-/*
-ضع بقية بيانات العملاء هنا بنفس الصيغة.
-*/
+{"rep":"علي عباس","commercial":"غسان الشطي","full":"غسان عدنان جراد","phone":"7810321394","address":"السايلو القديم","route":"A","coolers":[{"type":"ثلاثي","number":"61016220428160"},{"type":"تك","number":"B21700221111025"},{"type":"تك","number":"1064"},{"type":"تك","number":"284603071501853"}]},
+
+{"rep":"علي عباس","commercial":"قمر بني هاشم","full":"علي مرزة حمزة","phone":"7713382913","address":"مقابل مستشفى مرجان","route":"A","coolers":[{"type":"تك","number":"287096041600423"},{"type":"دبل","number":"32569231210500118"}]}
 
 ];
 
 
-/* قائمة المندوبين */
+/*
+=====================================
+قائمة المندوبين
+=====================================
+*/
 
-const reps = [
+const reps=[
 
 "احمد صفاء",
-"امير  احمد",
+"امير احمد",
 "امير علي جودة",
 "امير ياسين",
 "تحسين لطيف -نخبة",
@@ -539,25 +684,47 @@ repSel.appendChild(o);
 });
 
 
-/* توحيد النص العربي للبحث */
+document.getElementById('total').textContent=data.length;
+
+document.getElementById('repsCount').textContent=reps.length;
+
+
+/*
+=====================================
+توحيد النص العربي
+=====================================
+*/
 
 function norm(v){
 
 return String(v??'')
+
 .toLowerCase()
+
 .replace(/[ًٌٍَُِّْـ]/g,'')
+
 .replace(/[أإآٱ]/g,'ا')
+
 .replace(/ة/g,'ه')
+
 .replace(/ى/g,'ي')
+
 .replace(/ؤ/g,'و')
+
 .replace(/ئ/g,'ي')
+
 .replace(/\s+/g,' ')
+
 .trim();
 
 }
 
 
-/* جميع البيانات التي يبحث بها */
+/*
+=====================================
+كل الحقول التي يبحث بها
+=====================================
+*/
 
 function hay(r){
 
@@ -570,34 +737,65 @@ r.address,
 r.rep,
 r.route,
 
-...r.coolers.flatMap(c=>[
+...(r.coolers||[]).flatMap(c=>[
 c.type,
 c.number
 ])
 
 ]
+
 .map(norm)
-.join(' | ');
+
+.join(' ');
 
 }
 
 
-/* تنفيذ البحث */
+/*
+=====================================
+حماية النص
+=====================================
+*/
 
-function search(){
+function esc(v){
+
+return String(v??'')
+
+.replace(/[&<>"']/g,m=>
+
+({
+
+'&':'&amp;',
+'<':'&lt;',
+'>':'&gt;',
+'"':'&quot;',
+"'":'&#039;'
+
+}[m])
+
+);
+
+}
+
+
+/*
+=====================================
+فلترة البحث
+=====================================
+*/
+
+function filtered(){
 
 const q =
-norm(document.getElementById('q').value);
+norm(
+document.getElementById('q').value
+);
 
 const rep =
 norm(repSel.value);
 
-const box =
-document.getElementById('results');
 
-
-let arr =
-data.filter(r=>
+return data.filter(r=>
 
 (!rep || norm(r.rep)===rep)
 
@@ -607,18 +805,32 @@ data.filter(r=>
 
 );
 
+}
 
-arr.sort((a,b)=>
-norm(a.commercial)
-.localeCompare(norm(b.commercial),'ar')
-);
+
+/*
+=====================================
+البحث
+=====================================
+*/
+
+function search(){
+
+const arr=filtered();
+
+const box=
+document.getElementById('results');
 
 
 document.getElementById('count')
 .textContent='('+arr.length+')';
 
+
 document.getElementById('found')
 .textContent=arr.length;
+
+
+hideSuggestions();
 
 
 if(!arr.length){
@@ -631,9 +843,9 @@ return;
 }
 
 
-box.innerHTML =
+box.innerHTML=
 
-arr.slice(0,100)
+arr.slice(0,150)
 
 .map(r=>`
 
@@ -692,43 +904,119 @@ ${esc(r.rep||'—')}
 .join('');
 
 
-if(arr.length>100)
+if(arr.length>150){
 
 box.insertAdjacentHTML(
 
 'beforeend',
 
-'<div class="empty">تم عرض أول 100 نتيجة. ضيّق البحث أكثر.</div>'
+'<div class="empty">تم عرض أول 150 نتيجة. اكتب تفاصيل أكثر للوصول للعميل المطلوب.</div>'
 
 );
 
 }
 
+}
 
-/* حماية النص */
 
-function esc(v){
+/*
+=====================================
+الاقتراحات أثناء الكتابة
+=====================================
+*/
 
-return String(v??'')
+function showSuggestions(){
 
-.replace(/[&<>"']/g,m=>
-
-({
-
-'&':'&amp;',
-'<':'&lt;',
-'>':'&gt;',
-'"':'&quot;',
-"'":'&#039;'
-
-}[m])
-
+const q=
+norm(
+document.getElementById('q').value
 );
+
+
+if(q.length<1){
+
+hideSuggestions();
+
+return;
 
 }
 
 
-/* بطاقة العميل */
+const arr=
+filtered().slice(0,8);
+
+
+const sb=
+document.getElementById('suggestBox');
+
+
+if(!arr.length){
+
+sb.innerHTML=
+'<div class="suggest">لا توجد اقتراحات مطابقة</div>';
+
+sb.classList.add('show');
+
+return;
+
+}
+
+
+sb.innerHTML=
+
+arr.map(r=>`
+
+<div
+class="suggest"
+onclick="openCard(${data.indexOf(r)});hideSuggestions()"
+>
+
+<b>
+${esc(r.commercial||'بدون اسم تجاري')}
+</b>
+
+<small>
+
+${esc(r.full||'')}
+
+•
+
+المندوب:
+${esc(r.rep||'')}
+
+•
+
+البرادات:
+${(r.coolers||[]).length}
+
+</small>
+
+</div>
+
+`)
+
+.join('');
+
+
+sb.classList.add('show');
+
+}
+
+
+function hideSuggestions(){
+
+document
+.getElementById('suggestBox')
+.classList.remove('show');
+
+}
+
+
+/*
+=====================================
+فتح بطاقة العميل
+=====================================
+*/
 
 function openCard(i){
 
@@ -764,7 +1052,7 @@ const fields=[
 
 ['المسار',r.route],
 
-['عدد البرادات',r.coolers.length]
+['عدد البرادات',(r.coolers||[]).length]
 
 ];
 
@@ -787,23 +1075,29 @@ ${esc(x[1]||'—')}
 
 </div>
 
-`).join('');
+`)
+
+.join('');
+
+
+const cool=
+r.coolers||[];
 
 
 document.getElementById('mCoolerCount')
 .textContent=
-'('+r.coolers.length+')';
+'('+cool.length+')';
 
 
 document.getElementById('mCoolers')
 
 .innerHTML=
 
-r.coolers.length
+cool.length
 
 ?
 
-r.coolers.map(c=>`
+cool.map(c=>`
 
 <div class="cooler">
 
@@ -838,48 +1132,129 @@ ${esc(c.number||'—')}
 
 </div>
 
-`).join('')
+`)
+
+.join('')
 
 :
 
 '<div class="empty">لا توجد برادات مسجلة لهذا العميل.</div>';
 
 
-document.getElementById('modal')
+document
+.getElementById('modal')
 .classList.add('show');
 
 }
 
 
-/* إغلاق البطاقة */
+/*
+=====================================
+إغلاق البطاقة
+=====================================
+*/
 
 function closeCard(){
 
-document.getElementById('modal')
+document
+.getElementById('modal')
 .classList.remove('show');
 
 }
 
 
-/* Enter للبحث */
+/*
+=====================================
+الأزرار والبحث
+=====================================
+*/
 
-document.getElementById('q')
-.addEventListener('keydown',e=>{
+document
+.getElementById('searchBtn')
+.addEventListener(
+'click',
+search
+);
+
+
+document
+.getElementById('q')
+.addEventListener(
+'input',
+showSuggestions
+);
+
+
+document
+.getElementById('q')
+.addEventListener(
+'keydown',
+e=>{
 
 if(e.key==='Enter')
 search();
 
-});
+if(e.key==='Escape')
+hideSuggestions();
+
+}
+);
 
 
-/* تغيير المندوب */
+repSel.addEventListener(
+'change',
+()=>{
 
-repSel.addEventListener('change',()=>{
+if(
+document
+.getElementById('q')
+.value
+.trim()
+)
 
-if(document.getElementById('q').value.trim())
 search();
 
-});
+else
+
+hideSuggestions();
+
+}
+);
+
+
+document
+.getElementById('closeBtn')
+.addEventListener(
+'click',
+closeCard
+);
+
+
+document
+.getElementById('modal')
+.addEventListener(
+'click',
+e=>{
+
+if(e.target.id==='modal')
+closeCard();
+
+}
+);
+
+
+document.addEventListener(
+'click',
+e=>{
+
+if(
+!e.target.closest('.suggestions')
+)
+
+hideSuggestions();
+
+}
+);
 
 </script>
 
