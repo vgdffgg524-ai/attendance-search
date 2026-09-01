@@ -1,613 +1,883 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>بيسي يگدار - نظام معلومات العملاء</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>عملاء برادات مركز الحلة</title>
 
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
+*{box-sizing:border-box}
 
 body{
-    font-family:Tahoma,Arial,sans-serif;
-    background:#f5f8fc;
-    color:#172b4d;
+margin:0;
+background:#f4f7fb;
+color:#172b4d;
+font-family:Tahoma,Arial,sans-serif
 }
 
-.header{
-    background:#0757a8;
-    color:white;
-    padding:18px 6%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+header{
+background:#0757a8;
+color:#fff;
+padding:18px 5%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:15px
 }
 
-.logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
+.brand{
+font-size:22px;
+font-weight:800
 }
 
-.logo-circle{
-    width:42px;
-    height:42px;
-    border-radius:50%;
-    background:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#0757a8;
-    font-size:22px;
-    font-weight:bold;
+.sub{
+font-size:12px;
+opacity:.86;
+margin-top:4px
 }
 
-.title{
-    font-size:22px;
-    font-weight:bold;
+.user{
+background:#ffffff1c;
+padding:9px 14px;
+border-radius:10px
 }
 
-.subtitle{
-    font-size:12px;
-    opacity:.85;
-    margin-top:4px;
+main{
+max-width:1200px;
+margin:28px auto;
+padding:0 18px
 }
 
-.container{
-    max-width:1100px;
-    margin:28px auto;
-    padding:0 18px;
+.box{
+background:#fff;
+border:1px solid #e1e8f0;
+border-radius:18px;
+padding:24px;
+box-shadow:0 8px 30px #14325a12
 }
 
-.card{
-    background:white;
-    border:1px solid #e3eaf2;
-    border-radius:16px;
-    padding:24px;
-    box-shadow:0 6px 25px rgba(20,50,90,.07);
+h1{
+text-align:center;
+font-size:25px;
+margin:0 0 8px
 }
 
-.search-title{
-    text-align:center;
-    font-size:22px;
-    margin-bottom:8px;
+.hint{
+text-align:center;
+color:#718096;
+font-size:13px;
+margin-bottom:22px
 }
 
-.search-hint{
-    text-align:center;
-    color:#7b8794;
-    font-size:13px;
-    margin-bottom:22px;
+.filters{
+display:grid;
+grid-template-columns:220px 1fr 110px;
+gap:10px
 }
 
-.search-box{
-    display:flex;
-    gap:10px;
+select,input,button{
+font-family:inherit;
+font-size:15px;
+border-radius:11px;
+height:50px
 }
 
-.search-box input{
-    flex:1;
-    height:52px;
-    border:1px solid #ccd8e5;
-    border-radius:10px;
-    padding:0 18px;
-    font-size:16px;
-    outline:none;
+select,input{
+border:1px solid #ccd8e5;
+background:#fff;
+padding:0 14px;
+outline:none
 }
 
-.search-box input:focus{
-    border-color:#0875d1;
+input:focus,select:focus{
+border-color:#0875d1;
+box-shadow:0 0 0 3px #0875d11a
 }
 
-.search-btn{
-    width:120px;
-    border:none;
-    border-radius:10px;
-    background:#0875d1;
-    color:white;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
+.filters button{
+border:0;
+background:#0875d1;
+color:#fff;
+font-weight:800;
+cursor:pointer
 }
 
-.search-btn:hover{
-    background:#075da8;
+section{
+margin-top:28px
 }
 
-.section{
-    margin-top:28px;
-}
-
-.section-title{
-    font-size:18px;
-    margin-bottom:14px;
+h2{
+font-size:19px;
+margin:0 0 14px
 }
 
 .results{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
+display:grid;
+gap:10px
 }
 
 .result{
-    border:1px solid #e1e8f0;
-    border-radius:12px;
-    padding:16px;
-    display:grid;
-    grid-template-columns:1.5fr 1fr 1fr 35px;
-    align-items:center;
-    gap:15px;
-    cursor:pointer;
-    transition:.2s;
+border:1px solid #e1e8f0;
+border-radius:13px;
+padding:14px 16px;
+display:grid;
+grid-template-columns:1.5fr 1fr 1fr 25px;
+gap:14px;
+align-items:center;
+cursor:pointer;
+background:#fff
 }
 
 .result:hover{
-    box-shadow:0 5px 18px rgba(20,70,120,.10);
-    border-color:#b9d5ef;
+box-shadow:0 5px 18px #14467816;
+border-color:#b9d1e8
 }
 
 .value{
-    font-weight:bold;
+font-weight:800
 }
 
 .label{
-    color:#7b8794;
-    font-size:11px;
-    margin-top:5px;
+font-size:11px;
+color:#7b8794;
+margin-top:5px
 }
 
 .arrow{
-    color:#0875d1;
-    font-size:25px;
+font-size:25px;
+color:#0875d1
 }
 
 .empty{
-    text-align:center;
-    padding:30px;
-    color:#7b8794;
-    border:1px dashed #ccd8e5;
-    border-radius:12px;
+text-align:center;
+color:#718096;
+padding:28px;
+border:1px dashed #d9e2ec;
+border-radius:12px
 }
 
-.details{
-    display:none;
+.stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:12px
 }
 
-.detail-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:18px;
+.stat{
+background:#f2f7fd;
+border-radius:13px;
+padding:18px;
+text-align:center
 }
 
-.back-btn{
-    border:none;
-    background:#eaf3fc;
-    color:#0757a8;
-    padding:10px 16px;
-    border-radius:9px;
-    cursor:pointer;
+.num{
+font-size:25px;
+font-weight:800;
+color:#0875d1
 }
 
-.detail-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
+.muted{
+font-size:12px;
+color:#718096;
+margin-top:4px
 }
 
-.detail-item{
-    background:#f7f9fc;
-    border-radius:11px;
-    padding:15px;
+.modal{
+position:fixed;
+inset:0;
+background:#0b1f3388;
+display:none;
+align-items:center;
+justify-content:center;
+padding:18px;
+z-index:5
 }
 
-.detail-label{
-    color:#7b8794;
-    font-size:12px;
-    margin-bottom:7px;
+.modal.show{
+display:flex
 }
 
-.detail-value{
-    font-weight:bold;
-    font-size:15px;
+.card{
+width:min(900px,100%);
+max-height:90vh;
+overflow:auto;
+background:#fff;
+border-radius:18px;
+padding:24px;
+position:relative
 }
 
-.footer{
-    text-align:center;
-    color:#8a96a3;
-    font-size:12px;
-    padding:25px;
+.close{
+position:absolute;
+left:18px;
+top:15px;
+width:42px;
+height:42px;
+background:#eef4fa;
+color:#0757a8;
+border-radius:50%;
+font-size:22px;
+border:0;
+cursor:pointer
 }
 
-@media(max-width:700px){
+.card h2{
+margin:0 0 5px;
+font-size:23px;
+color:#0757a8
+}
 
-    .header{
-        padding:15px;
-    }
+.cardsub{
+color:#718096;
+font-size:13px;
+margin-bottom:18px
+}
 
-    .search-box{
-        flex-direction:column;
-    }
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px
+}
 
-    .search-btn{
-        width:100%;
-        height:50px;
-    }
+.info{
+background:#f7f9fc;
+border:1px solid #e4ebf2;
+border-radius:12px;
+padding:13px
+}
 
-    .result{
-        grid-template-columns:1fr 1fr;
-    }
+.info .label{
+margin:0 0 5px
+}
 
-    .detail-grid{
-        grid-template-columns:1fr;
-    }
+.info .value{
+font-size:16px
+}
+
+.coolers{
+margin-top:18px
+}
+
+.cooler{
+border:1px solid #dce6ef;
+border-radius:12px;
+padding:13px;
+margin-top:8px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px
+}
+
+.badge{
+display:inline-block;
+background:#eaf4ff;
+color:#0757a8;
+padding:4px 9px;
+border-radius:20px;
+font-size:12px;
+font-weight:bold
+}
+
+@media(max-width:750px){
+
+.filters{
+grid-template-columns:1fr
+}
+
+.result{
+grid-template-columns:1fr 1fr
+}
+
+.stats{
+grid-template-columns:1fr 1fr
+}
+
 }
 </style>
 </head>
 
 <body>
 
-<header class="header">
+<header>
+<div>
+<div class="brand">عملاء برادات مركز الحلة</div>
+<div class="sub">نظام معلومات العملاء</div>
+</div>
 
-    <div class="logo">
-
-        <div class="logo-circle">P</div>
-
-        <div>
-            <div class="title">بيسي يگدار</div>
-            <div class="subtitle">نظام معلومات العملاء</div>
-        </div>
-
-    </div>
-
-    <div>👤</div>
-
+<div class="user">👤 مرحباً، مستخدم</div>
 </header>
 
+<main>
 
-<div class="container">
+<div class="box">
+
+<h1>🔎 البحث عن العميل</h1>
+
+<div class="hint">
+ابحث بالاسم التجاري أو الاسم الثلاثي أو رقم الهاتف أو رقم البراد، ويمكنك تحديد المندوب.
+</div>
+
+<div class="filters">
+
+<select id="rep">
+<option value="">كل المندوبين</option>
+</select>
+
+<input
+id="q"
+placeholder="اكتب الاسم التجاري أو الاسم الثلاثي أو رقم البراد..."
+>
+
+<button onclick="search()">بحث</button>
+
+</div>
+
+<section>
+
+<h2>
+👥 نتائج البحث
+<span id="count"></span>
+</h2>
+
+<div id="results">
+<div class="empty">
+اكتب اسم العميل ثم اضغط بحث.
+</div>
+</div>
+
+</section>
+
+<section>
+
+<h2>📊 معلومات العملاء</h2>
+
+<div class="stats">
+
+<div class="stat">
+<div class="num">2097</div>
+<div class="muted">إجمالي العملاء</div>
+</div>
+
+<div class="stat">
+<div class="num">24</div>
+<div class="muted">المندوبين</div>
+</div>
+
+<div class="stat">
+<div class="num">✓</div>
+<div class="muted">بيانات Excel محمّلة</div>
+</div>
+
+<div class="stat">
+<div class="num" id="found">0</div>
+<div class="muted">نتائج البحث</div>
+</div>
+
+</div>
+</section>
+
+</div>
+</main>
+
+
+<div
+class="modal"
+id="modal"
+onclick="if(event.target===this)closeCard()"
+>
 
 <div class="card">
 
-    <h1 class="search-title">🔎 البحث عن العميل</h1>
+<button
+class="close"
+onclick="closeCard()"
+>
+×
+</button>
 
-    <div class="search-hint">
-        يمكنك البحث بالاسم التجاري أو الاسم الثلاثي أو جزء من الاسم
-    </div>
+<h2 id="mName"></h2>
 
+<div
+class="cardsub"
+id="mSub"
+></div>
 
-    <div class="search-box">
+<div
+class="grid"
+id="mGrid"
+></div>
 
-        <input
-            id="searchInput"
-            type="text"
-            placeholder="اكتب الاسم التجاري أو الاسم الثلاثي ..."
-        >
+<div class="coolers">
 
-        <button class="search-btn" onclick="searchCustomer()">
-            🔍 بحث
-        </button>
+<h2 style="font-size:18px">
+🧊 البرادات
+<span id="mCoolerCount"></span>
+</h2>
 
-    </div>
-
-
-    <div class="section">
-
-        <h2 class="section-title">
-            👥 نتائج البحث
-            <span id="resultCount"></span>
-        </h2>
-
-        <div id="results" class="results">
-
-            <div class="empty">
-                اكتب اسم العميل ثم اضغط بحث.
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div id="details" class="section details">
-
-        <div class="detail-header">
-
-            <h2 class="section-title">
-                بيانات العميل
-            </h2>
-
-            <button class="back-btn" onclick="closeDetails()">
-                ← رجوع
-            </button>
-
-        </div>
-
-        <div id="detailGrid" class="detail-grid"></div>
-
-    </div>
+<div id="mCoolers"></div>
 
 </div>
 
 </div>
-
-
-<div class="footer">
-    © 2026 نظام معلومات العملاء
 </div>
 
 
 <script>
 
+/* بيانات العملاء */
+
+const data = [
+
+{"rep":"مالك عبيد","commercial":"أسواق عباس","full":"عبدالله فاضل","phone":"78221460","address":"بكرلي 2","route":"A","coolers":[{"type":"تك","number":"60002221012142"}]},
+
+{"rep":"مالك عبيد","commercial":"بغداد","full":"علي حمزة سعيد","phone":"7806052754","address":"نهاية شارع 20","route":"A","coolers":[{"type":"دبل","number":"284936041400368"}]},
+
+{"rep":"مالك عبيد","commercial":"أسواق التميمي","full":"رامي محمد","phone":"","address":"بكرلي 2","route":"A","coolers":[{"type":"دبل","number":"دبل"}]},
+
+{"rep":"مالك عبيد","commercial":"اسواق غزوان","full":"عزوان عبد الحسن","phone":"7802022233","address":"نهاية شارع 20","route":"A","coolers":[{"type":"تك","number":"284603021400945"}]},
+
+{"rep":"مالك عبيد","commercial":"جنات","full":"سلام اياد سعيد","phone":"7811382464","address":"نهاية شارع 20","route":"A","coolers":[{"type":"ثلاثي","number":"A20075220401078"},{"type":"تك","number":"1702100623"}]},
+
+{"rep":"مالك عبيد","commercial":"شارع 20","full":"محمد رياض مهدي","phone":"7806485535","address":"نهاية شارع 20","route":"A","coolers":[{"type":"","number":"تم السحب 3/6/2026"}]},
+
+{"rep":"مالك عبيد","commercial":"أسواق أبو زيد","full":"ميثم علي حسون","phone":"7810046048","address":"الجزائر","route":"A","coolers":[{"type":"تك","number":"29195200113232"}]},
+
+{"rep":"مالك عبيد","commercial":"كرسبي فارس","full":"فارس عماد عبدزيد","phone":"7773663502","address":"بكرلي","route":"A","coolers":[{"type":"","number":"301679021801009"}]},
+
+{"rep":"مالك عبيد","commercial":"المصطفى","full":"مصطفى حسين خليل","phone":"7801607700","address":"مقابل البرج","route":"A","coolers":[{"type":"ثلاثي","number":"33055240415000343"}]},
+
+{"rep":"مالك عبيد","commercial":"الغدير","full":"رافد عبد الحسين","phone":"7811349655","address":"مقابل مركز صحي","route":"A","coolers":[{"type":"","number":"لايوجد براد"}]},
+
+{"rep":"مالك عبيد","commercial":"مطعم ومشويات الزهراء","full":"حسن فاضل نايف","phone":"7802731483","address":"قرب وزارة الصحة","route":"A","coolers":[{"type":"تك","number":"16585221105155"}]},
+
+{"rep":"مالك عبيد","commercial":"اسواق روتاج","full":"ماجد حميد","phone":"7803057859","address":"قرب وزارة الصحة","route":"A","coolers":[{"type":"دبل","number":"51276131100777"}]},
+
+{"rep":"مالك عبيد","commercial":"بركات السبطين","full":"مثنى عبدالكريم عبدالرحيم","phone":"7807782631","address":"بكرلي","route":"A","coolers":[{"type":"تك","number":"32483241110000545"}]},
+
+{"rep":"مالك عبيد","commercial":"الزهراء","full":"مرتضى حسين عبد","phone":"7738077341","address":"قرب النفق","route":"A","coolers":[{"type":"تك","number":"287096031600136"}]},
+
+{"rep":"مالك عبيد","commercial":"الحسنين","full":"عباس محمد عيسى","phone":"7601045846","address":"حسينية السفير","route":"A","coolers":[{"type":"","number":"لايوجد براد"}]},
+
+{"rep":"مالك عبيد","commercial":"الزهراء","full":"منذر عبد الامير بدن","phone":"7736477494","address":"حسينية سليمان المحمدي","route":"A","coolers":[{"type":"تك","number":"6272611101030"}]},
+
+{"rep":"مالك عبيد","commercial":"ابو علي","full":"صلاح حسن","phone":"7603644024","address":"فرن بريج","route":"A","coolers":[{"type":"تك","number":"1702100312"}]},
+
+{"rep":"مالك عبيد","commercial":"الحسنين","full":"امير كريم اسماعيل","phone":"7805209663","address":"مدرسة البحتري","route":"A","coolers":[{"type":"تك","number":"287096121500775"}]},
+
+{"rep":"مالك عبيد","commercial":"نوتيلا","full":"حيدر علي امجد","phone":"7831807435","address":"مدرسة البحتري","route":"A","coolers":[{"type":"تك","number":"B16276211101042"}]},
+
+{"rep":"مالك عبيد","commercial":"ابو ايهم","full":"قاسم ناجي حطحوط","phone":"7821685219","address":"مدرسة البحتري","route":"A","coolers":[{"type":"تك","number":"16593211102092"},{"type":"","number":"سحب البراد"}]},
+
+{"rep":"مالك عبيد","commercial":"ابو رانيا","full":"محمد مصطفى حميد","phone":"7711180671","address":"شارع الاسواق القديمة","route":"A","coolers":[{"type":"ثلاثي","number":"3305540415000258"}]},
+
+{"rep":"مالك عبيد","commercial":"الوردة","full":"علي منصور حمزة","phone":"7809707058","address":"شارع الاسواق القديمة","route":"A","coolers":[{"type":"ثلاثي","number":"A62030221024216"}]},
+
+{"rep":"مالك عبيد","commercial":"السيد","full":"عصام هادي علي","phone":"7801334313","address":"شارع الاسواق القديمة","route":"A","coolers":[{"type":"ثلاثي","number":"2710230315000016"},{"type":"تك","number":"16585221105020"}]},
+
+{"rep":"مالك عبيد","commercial":"محمد عبكة","full":"محمد صادق صالح","phone":"7831335918","address":"شارع الاسواق القديمة","route":"A","coolers":[{"type":"تك","number":"B21089190527164"}]},
+
+{"rep":"مالك عبيد","commercial":"مجمع المصطفى","full":"ظاهر عبد الستار كاظم","phone":"7812847749","address":"شارع الاسواق القديمة","route":"A","coolers":[{"type":"دبل","number":"2001401138"}]},
+
+{"rep":"مالك عبيد","commercial":"حسن المجتبى","full":"حسين علي نوري","phone":"7801548164","address":"قرب الانوار للتسوق","route":"A","coolers":[{"type":"تك","number":"3412210815041"}]},
+
+{"rep":"مالك عبيد","commercial":"فارس","full":"عقيل خالد حمزة","phone":"7801548164","address":"سكة القطار","route":"A","coolers":[{"type":"ثلاثي","number":"B61016220428136"}]},
+
+{"rep":"مالك عبيد","commercial":"فاضل","full":"فاضل عباس مكي","phone":"7800227311","address":"مركز شرطة حي بابل","route":"A","coolers":[{"type":"","number":"لايوجد براد"}]},
+
 /*
-=========================================
-بيانات العملاء
-=========================================
-
-هنا لاحقاً نربط بيانات Excel الأصلية.
-
-حالياً هذه بيانات تجريبية فقط للواجهة.
-لا تعتبرها بيانات ملف Excel.
+ضع بقية بيانات العملاء هنا بنفس الصيغة.
 */
-
-const customers = [
-
-    {
-        commercial:"بركات الزهراء",
-        name:"حامد مراد عطية",
-        phone:"07712345678",
-        route:"12",
-        address:"بغداد - حي الجامعة"
-    },
-
-    {
-        commercial:"بركات الزهراء",
-        name:"علي كاظم حسن",
-        phone:"07823456789",
-        route:"7",
-        address:"بغداد - حي الجامعة"
-    },
-
-    {
-        commercial:"بركات الزهراء",
-        name:"محمد عبد الحسين",
-        phone:"07734567890",
-        route:"15",
-        address:"بغداد - حي الجامعة"
-    }
 
 ];
 
 
-let currentResults = [];
+/* قائمة المندوبين */
+
+const reps = [
+
+"احمد صفاء",
+"امير  احمد",
+"امير علي جودة",
+"امير ياسين",
+"تحسين لطيف -نخبة",
+"حسن كريم",
+"حسين شمخي",
+"حمزة طارق",
+"حيدر يحيى",
+"زيد حاتم",
+"سجاد راشد",
+"عادل جميل",
+"عادل جواد",
+"عباس موسى",
+"عدنان هادي",
+"عدي حاكم",
+"علي عباس",
+"كفاح معن",
+"مالك عبيد",
+"محمد عبدالحسين",
+"مروان صلاح",
+"مصطفى محمود",
+"ياسر",
+"يوسف اياد"
+
+];
 
 
-function normalize(text){
-
-    return String(text || "")
-        .trim()
-        .toLowerCase()
-        .replace(/\s+/g," ");
-
-}
+const repSel =
+document.getElementById('rep');
 
 
-function searchCustomer(){
+reps.forEach(x=>{
 
-    const query =
-        normalize(
-            document.getElementById("searchInput").value
-        );
+const o =
+document.createElement('option');
 
-    const results =
-        document.getElementById("results");
+o.value=x;
+o.textContent=x;
 
-    const count =
-        document.getElementById("resultCount");
+repSel.appendChild(o);
 
-
-    if(!query){
-
-        results.innerHTML =
-            '<div class="empty">اكتب اسم العميل أولاً.</div>';
-
-        count.textContent = "";
-
-        return;
-    }
+});
 
 
-    currentResults =
-        customers.filter(customer => {
+/* توحيد النص العربي للبحث */
 
-            return normalize(customer.commercial).includes(query)
-                || normalize(customer.name).includes(query);
+function norm(v){
 
-        });
-
-
-    count.textContent =
-        " (" + currentResults.length + ")";
-
-
-    if(currentResults.length === 0){
-
-        results.innerHTML =
-            '<div class="empty">لم يتم العثور على عميل مطابق.</div>';
-
-        return;
-    }
-
-
-    results.innerHTML =
-        currentResults.map((customer,index) => {
-
-            return `
-
-            <div class="result"
-                 onclick="showDetails(${index})">
-
-                <div>
-                    <div class="value">
-                        ${customer.commercial}
-                    </div>
-
-                    <div class="label">
-                        الاسم التجاري
-                    </div>
-                </div>
-
-
-                <div>
-
-                    <div class="value">
-                        ${customer.name}
-                    </div>
-
-                    <div class="label">
-                        الاسم الثلاثي
-                    </div>
-
-                </div>
-
-
-                <div>
-
-                    <div class="value">
-                        ${customer.phone}
-                    </div>
-
-                    <div class="label">
-                        الهاتف
-                    </div>
-
-                </div>
-
-
-                <div class="arrow">
-                    ‹
-                </div>
-
-            </div>
-
-            `;
-
-        }).join("");
+return String(v??'')
+.toLowerCase()
+.replace(/[ًٌٍَُِّْـ]/g,'')
+.replace(/[أإآٱ]/g,'ا')
+.replace(/ة/g,'ه')
+.replace(/ى/g,'ي')
+.replace(/ؤ/g,'و')
+.replace(/ئ/g,'ي')
+.replace(/\s+/g,' ')
+.trim();
 
 }
 
 
-function showDetails(index){
+/* جميع البيانات التي يبحث بها */
 
-    const customer =
-        currentResults[index];
+function hay(r){
 
-    const grid =
-        document.getElementById("detailGrid");
+return [
 
+r.commercial,
+r.full,
+r.phone,
+r.address,
+r.rep,
+r.route,
 
-    grid.innerHTML = `
+...r.coolers.flatMap(c=>[
+c.type,
+c.number
+])
 
-        <div class="detail-item">
-
-            <div class="detail-label">
-                الاسم التجاري
-            </div>
-
-            <div class="detail-value">
-                ${customer.commercial}
-            </div>
-
-        </div>
-
-
-        <div class="detail-item">
-
-            <div class="detail-label">
-                الاسم الثلاثي
-            </div>
-
-            <div class="detail-value">
-                ${customer.name}
-            </div>
-
-        </div>
-
-
-        <div class="detail-item">
-
-            <div class="detail-label">
-                الهاتف
-            </div>
-
-            <div class="detail-value">
-                ${customer.phone}
-            </div>
-
-        </div>
-
-
-        <div class="detail-item">
-
-            <div class="detail-label">
-                المسار
-            </div>
-
-            <div class="detail-value">
-                ${customer.route}
-            </div>
-
-        </div>
-
-
-        <div class="detail-item">
-
-            <div class="detail-label">
-                العنوان
-            </div>
-
-            <div class="detail-value">
-                ${customer.address}
-            </div>
-
-        </div>
-
-    `;
-
-
-    document.getElementById("details").style.display =
-        "block";
-
-
-    document.getElementById("details")
-        .scrollIntoView({
-            behavior:"smooth"
-        });
+]
+.map(norm)
+.join(' | ');
 
 }
 
 
-function closeDetails(){
+/* تنفيذ البحث */
 
-    document.getElementById("details").style.display =
-        "none";
+function search(){
+
+const q =
+norm(document.getElementById('q').value);
+
+const rep =
+norm(repSel.value);
+
+const box =
+document.getElementById('results');
+
+
+let arr =
+data.filter(r=>
+
+(!rep || norm(r.rep)===rep)
+
+&&
+
+(!q || hay(r).includes(q))
+
+);
+
+
+arr.sort((a,b)=>
+norm(a.commercial)
+.localeCompare(norm(b.commercial),'ar')
+);
+
+
+document.getElementById('count')
+.textContent='('+arr.length+')';
+
+document.getElementById('found')
+.textContent=arr.length;
+
+
+if(!arr.length){
+
+box.innerHTML=
+'<div class="empty">لم يتم العثور على عميل مطابق.</div>';
+
+return;
 
 }
 
 
-document
-.getElementById("searchInput")
-.addEventListener("keydown",function(event){
+box.innerHTML =
 
-    if(event.key === "Enter"){
+arr.slice(0,100)
 
-        searchCustomer();
+.map(r=>`
 
-    }
+<div
+class="result"
+onclick="openCard(${data.indexOf(r)})"
+>
+
+<div>
+
+<div class="value">
+${esc(r.commercial||'—')}
+</div>
+
+<div class="label">
+الاسم التجاري
+</div>
+
+</div>
+
+
+<div>
+
+<div class="value">
+${esc(r.full||'—')}
+</div>
+
+<div class="label">
+الاسم الثلاثي
+</div>
+
+</div>
+
+
+<div>
+
+<div class="value">
+${esc(r.rep||'—')}
+</div>
+
+<div class="label">
+المندوب
+</div>
+
+</div>
+
+
+<div class="arrow">
+‹
+</div>
+
+</div>
+
+`)
+
+.join('');
+
+
+if(arr.length>100)
+
+box.insertAdjacentHTML(
+
+'beforeend',
+
+'<div class="empty">تم عرض أول 100 نتيجة. ضيّق البحث أكثر.</div>'
+
+);
+
+}
+
+
+/* حماية النص */
+
+function esc(v){
+
+return String(v??'')
+
+.replace(/[&<>"']/g,m=>
+
+({
+
+'&':'&amp;',
+'<':'&lt;',
+'>':'&gt;',
+'"':'&quot;',
+"'":'&#039;'
+
+}[m])
+
+);
+
+}
+
+
+/* بطاقة العميل */
+
+function openCard(i){
+
+const r=data[i];
+
+
+document.getElementById('mName')
+.textContent=
+r.commercial||
+'بدون اسم تجاري';
+
+
+document.getElementById('mSub')
+.textContent=
+
+'المندوب: '+
+(r.rep||'—')+
+'  •  المسار: '+
+(r.route||'—');
+
+
+const fields=[
+
+['الاسم التجاري',r.commercial],
+
+['الاسم الثلاثي',r.full],
+
+['العنوان',r.address],
+
+['رقم الهاتف',r.phone],
+
+['اسم المندوب',r.rep],
+
+['المسار',r.route],
+
+['عدد البرادات',r.coolers.length]
+
+];
+
+
+document.getElementById('mGrid')
+
+.innerHTML=
+
+fields.map(x=>`
+
+<div class="info">
+
+<div class="label">
+${esc(x[0])}
+</div>
+
+<div class="value">
+${esc(x[1]||'—')}
+</div>
+
+</div>
+
+`).join('');
+
+
+document.getElementById('mCoolerCount')
+.textContent=
+'('+r.coolers.length+')';
+
+
+document.getElementById('mCoolers')
+
+.innerHTML=
+
+r.coolers.length
+
+?
+
+r.coolers.map(c=>`
+
+<div class="cooler">
+
+<div>
+
+<div class="label">
+نوع البراد
+</div>
+
+<div class="value">
+
+<span class="badge">
+${esc(c.type||'—')}
+</span>
+
+</div>
+
+</div>
+
+
+<div>
+
+<div class="label">
+رقم البراد
+</div>
+
+<div class="value">
+${esc(c.number||'—')}
+</div>
+
+</div>
+
+</div>
+
+`).join('')
+
+:
+
+'<div class="empty">لا توجد برادات مسجلة لهذا العميل.</div>';
+
+
+document.getElementById('modal')
+.classList.add('show');
+
+}
+
+
+/* إغلاق البطاقة */
+
+function closeCard(){
+
+document.getElementById('modal')
+.classList.remove('show');
+
+}
+
+
+/* Enter للبحث */
+
+document.getElementById('q')
+.addEventListener('keydown',e=>{
+
+if(e.key==='Enter')
+search();
+
+});
+
+
+/* تغيير المندوب */
+
+repSel.addEventListener('change',()=>{
+
+if(document.getElementById('q').value.trim())
+search();
 
 });
 
